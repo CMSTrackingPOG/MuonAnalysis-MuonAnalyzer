@@ -13,6 +13,8 @@ $ git cms-init
 $ git clone https://github.com/matt2275/muonanalysis-muonanalyzer.git MuonAnalysis/MuonAnalyzer
 $ scram b -j 8
 ```
+The Setup to run on 2023 data with CMSSW_13_0_3 requires a change in plugins/MuonGenAnalyzer.h, switching from #include "FWCore/Framework/interface/EDAnalyzer.h" to
+#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 
 ## Usage
 ```bash
