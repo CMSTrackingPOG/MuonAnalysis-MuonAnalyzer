@@ -1,0 +1,59 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2017_UL",
+    "suberas": {
+        "AOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL17RECO-PUForMUOVal_106X_mc2017_realistic_v6-v2/AODSIM",
+                "globalTag": "106X_mc2017_realistic_v6"
+            },
+            "Run2017B": {
+                "dataset": "/SingleMuon/Run2017B-09Aug2019_UL2017-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017C": {
+                "dataset": "/SingleMuon/Run2017C-09Aug2019_UL2017-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017D": {
+                "dataset": "/SingleMuon/Run2017D-09Aug2019_UL2017-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017E": {
+                "dataset": "/SingleMuon/Run2017E-09Aug2019_UL2017-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017F": {
+                "dataset": "/SingleMuon/Run2017F-09Aug2019_UL2017-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        },
+        "MINIAOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL17MiniAOD-PUForMUOVal_106X_mc2017_realistic_v6-v2/MINIAODSIM",
+                "globalTag": "106X_mc2017_realistic_v6"
+            },
+            "Run2017B": {
+                "dataset": "/SingleMuon/Run2017B-09Aug2019_UL2017-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017C": {
+                "dataset": "/SingleMuon/Run2017C-09Aug2019_UL2017-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017D": {
+                "dataset": "/SingleMuon/Run2017D-09Aug2019_UL2017-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017E": {
+                "dataset": "/SingleMuon/Run2017E-09Aug2019_UL2017-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2017F": {
+                "dataset": "/SingleMuon/Run2017F-09Aug2019_UL2017-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        }
+    }
+}

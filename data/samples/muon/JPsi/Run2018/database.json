@@ -1,0 +1,31 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2018",
+    "suberas": {
+        "AOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIIAutumn18DRPremix-102X_upgrade2018_realistic_v15-v1/AODSIM",
+                "globalTag": "102X_upgrade2018_realistic_v15"
+            },
+            "Run2018A": {
+                "dataset": "/Charmonium/Run2018A-17Sep2018-v1/AOD",
+                "globalTag": "102X_dataRun2_v11"
+            },
+            "Run2018B": {
+                "dataset": "/Charmonium/Run2018B-17Sep2018-v1/AOD",
+                "globalTag": "102X_dataRun2_v11"
+            },
+            "Run2018C": {
+                "dataset": "/Charmonium/Run2018C-17Sep2018-v1/AOD",
+                "globalTag": "102X_dataRun2_v11"
+            },
+            "Run2018D": {
+                "dataset": "/Charmonium/Run2018D-PromptReco-v2/AOD",
+                "globalTag": "102X_dataRun2_Prompt_v15"
+            }
+        },
+        "MINIAOD": {
+        }
+    }
+}

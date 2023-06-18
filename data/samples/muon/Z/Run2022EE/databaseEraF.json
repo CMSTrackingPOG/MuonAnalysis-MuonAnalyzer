@@ -1,0 +1,35 @@
+{
+    "particle": "muon",
+    "resonance": "Z",
+    "era": "Run2022",
+    "suberas": {
+        "MINIAOD": {
+            "DY_madgraph": {
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/Run3Summer22EEMiniAODv3-forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_amcatnlo": {
+                "dataset": "/DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v4/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "Run2022E": {
+                "dataset": "/Muon/Run2022E-PromptReco-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_Prompt_v4"
+            },
+            "Run2022F": {
+                "dataset": "/Muon/Run2022F-PromptReco-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_Prompt_v4"
+            },
+            "Run2022G": {
+                "dataset": "/Muon/Run2022G-PromptReco-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_Prompt_v10"
+            }
+        },
+        "AOD": {
+            "Run2022F": {
+                "dataset": "/Muon/Run2022F-PromptReco-v1/AOD",
+                "globalTag": "124X_dataRun3_Prompt_v4"
+            }
+        }
+    }
+}

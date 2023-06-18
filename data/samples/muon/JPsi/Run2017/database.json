@@ -1,0 +1,35 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2017",
+    "suberas": {
+        "AOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIIFall17DRPremix-RECOSIMstep_94X_mc2017_realistic_v10-v1/AODSIM",
+                "globalTag": "94X_mc2017_realistic_v17"
+            },
+            "Run2017B": {
+                "dataset": "/Charmonium/Run2017B-17Nov2017-v1/AOD",
+                "globalTag": "94X_dataRun2_v11"
+            },
+            "Run2017C": {
+                "dataset": "/Charmonium/Run2017C-17Nov2017-v1/AOD",
+                "globalTag": "94X_dataRun2_v11"
+            },
+            "Run2017D": {
+                "dataset": "/Charmonium/Run2017D-17Nov2017-v1/AOD",
+                "globalTag": "94X_dataRun2_v11"
+            },
+            "Run2017E": {
+                "dataset": "/Charmonium/Run2017E-17Nov2017-v1/AOD",
+                "globalTag": "94X_dataRun2_v11"
+            },
+            "Run2017F": {
+                "dataset": "/Charmonium/Run2017F-17Nov2017-v1/AOD",
+                "globalTag": "94X_dataRun2_v11"
+            }
+        },
+        "MINIAOD": {
+        }
+    }
+}

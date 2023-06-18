@@ -1,0 +1,79 @@
+{
+    "particle": "muon",
+    "resonance": "Z",
+    "era": "Run2016_UL_HIPM",
+    "suberas": {
+        "AOD": {
+            "DY_madgraph": {
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16RECOAPV-106X_mcRun2_asymptotic_preVFP_v8-v1/AODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_preVFP_v9"
+            },
+            "Run2016B": {
+                "dataset": "/SingleMuon/Run2016B-21Feb2020_ver2_UL2016_HIPM-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016C": {
+                "dataset": "/SingleMuon/Run2016C-21Feb2020_UL2016_HIPM-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016D": {
+                "dataset": "/SingleMuon/Run2016D-21Feb2020_UL2016_HIPM-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016E": {
+                "dataset": "/SingleMuon/Run2016E-21Feb2020_UL2016_HIPM-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016_HIPM-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        },
+        "MINIAOD": {
+            "DY_madgraph": {
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAODAPV-106X_mcRun2_asymptotic_preVFP_v8-v1/MINIAODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_preVFP_v9"
+            },
+            "Run2016B": {
+                "dataset": "/SingleMuon/Run2016B-21Feb2020_ver2_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016C": {
+                "dataset": "/SingleMuon/Run2016C-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016D": {
+                "dataset": "/SingleMuon/Run2016D-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016E": {
+                "dataset": "/SingleMuon/Run2016E-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016B_DM": {
+                "dataset": "/DoubleMuon/Run2016B-21Feb2020_ver2_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016C_DM": {
+                "dataset": "/DoubleMuon/Run2016C-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016D_DM": {
+                "dataset": "/DoubleMuon/Run2016D-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016E_DM": {
+                "dataset": "/DoubleMuon/Run2016E-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016F_DM": {
+                "dataset": "/DoubleMuon/Run2016F-21Feb2020_UL2016_HIPM-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        }
+    }
+}

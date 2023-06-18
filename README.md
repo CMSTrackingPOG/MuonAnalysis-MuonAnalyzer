@@ -2,15 +2,15 @@
 
 Package to run tag/probe ntuples for Muon POG on both AOD and miniAOD format.
 
-Requires CMSSW_10_6_X or higher.
+Requires CMSSW_12_4_12 or higher.
 
 ## Setup
 ```bash
-$ cmsrel CMSSW_10_6_18 
-$ cd CMSSW_10_6_18/src
+$ cmsrel CMSSW_12_4_12 
+$ cd CMSSW_12_4_12/src
 $ cmsenv
 $ git cms-init
-$ git clone https://gitlab.cern.ch/cms-muonPOG/muonanalysis-muonanalyzer.git MuonAnalysis/MuonAnalyzer
+$ git clone https://github.com/matt2275/muonanalysis-muonanalyzer.git MuonAnalysis/MuonAnalyzer
 $ scram b -j 8
 ```
 
@@ -18,6 +18,11 @@ $ scram b -j 8
 ```bash
 $ cmsRun MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg.py
 ```
+
+## Running StandAlone Analyzer
+```bash
+$ cmsRun MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg.py isStandAlone=True
+# Note only works with Z Resonance at the moment no JPsi config files set yet
 
 ## Contributing
 

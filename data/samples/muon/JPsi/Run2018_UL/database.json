@@ -1,0 +1,51 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2018_UL",
+    "suberas": {
+        "AOD": {
+            "DY_madgraph": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL18RECO-106X_upgrade2018_realistic_v11_L1v1-v2/AODSIM",
+                "globalTag": "106X_upgrade2018_realistic_v11_L1v1"
+            },
+            "Run2018A": {
+                "dataset": "/SingleMuon/Run2018A-12Nov2019_UL2018_rsb-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018B": {
+                "dataset": "/SingleMuon/Run2018B-12Nov2019_UL2018-v2/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018C": {
+                "dataset": "/SingleMuon/Run2018C-12Nov2019_UL2018-v2/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018D": {
+                "dataset": "/SingleMuon/Run2018D-12Nov2019_UL2018-v4/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        },
+        "MINIAOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1/MINIAODSIM",
+                "globalTag": "106X_upgrade2018_realistic_v16_L1v1"
+            },
+            "Run2018A": {
+                "dataset": "/SingleMuon/Run2018A-12Nov2019_UL2018_rsb-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018B": {
+                "dataset": "/SingleMuon/Run2018B-12Nov2019_UL2018-v2/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018C": {
+                "dataset": "/SingleMuon/Run2018C-12Nov2019_UL2018-v2/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2018D": {
+                "dataset": "/SingleMuon/Run2018D-12Nov2019_UL2018-v4/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        }
+    }
+}

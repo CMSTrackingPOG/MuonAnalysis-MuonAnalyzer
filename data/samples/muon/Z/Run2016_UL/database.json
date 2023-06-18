@@ -1,0 +1,55 @@
+{
+    "particle": "muon",
+    "resonance": "Z",
+    "era": "Run2016_UL",
+    "suberas": {
+        "AOD": {
+            "DY_madgraph": {
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16RECO-106X_mcRun2_asymptotic_v13-v2/AODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_v15"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016G": {
+                "dataset": "/SingleMuon/Run2016G-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016H": {
+                "dataset": "/SingleMuon/Run2016H-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        },
+        "MINIAOD": {
+            "DY_madgraph": {
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAOD-106X_mcRun2_asymptotic_v13-v2/MINIAODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_v15"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016G": {
+                "dataset": "/SingleMuon/Run2016G-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016H": {
+                "dataset": "/SingleMuon/Run2016H-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016F_DM": {
+                "dataset": "/DoubleMuon/Run2016F-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016G_DM": {
+                "dataset": "/DoubleMuon/Run2016G-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016H_DM": {
+                "dataset": "/DoubleMuon/Run2016H-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        }
+    }
+}

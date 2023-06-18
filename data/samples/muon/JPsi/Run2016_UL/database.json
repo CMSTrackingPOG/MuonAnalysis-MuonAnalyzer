@@ -1,0 +1,43 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2016_UL",
+    "suberas": {
+        "AOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL16RECO-106X_mcRun2_asymptotic_v13-v2/AODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_v13"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016G": {
+                "dataset": "/SingleMuon/Run2016G-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016H": {
+                "dataset": "/SingleMuon/Run2016H-21Feb2020_UL2016-v1/AOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        },
+        "MINIAOD": {
+            "Jpsi": {
+                "dataset": "/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/RunIISummer19UL16MiniAOD-106X_mcRun2_asymptotic_v13-v2/MINIAODSIM",
+                "globalTag": "106X_mcRun2_asymptotic_v13"
+            },
+            "Run2016F": {
+                "dataset": "/SingleMuon/Run2016F-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016G": {
+                "dataset": "/SingleMuon/Run2016G-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            },
+            "Run2016H": {
+                "dataset": "/SingleMuon/Run2016H-21Feb2020_UL2016-v1/MINIAOD",
+                "globalTag": "106X_dataRun2_v32"
+            }
+        }
+    }
+}
