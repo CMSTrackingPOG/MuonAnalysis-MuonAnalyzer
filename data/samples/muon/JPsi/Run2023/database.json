@@ -1,6 +1,6 @@
 {
     "particle": "muon",
-    "resonance": "Z",
+    "resonance": "JPsi",
     "era": "Run2023",
     "suberas": {
         "MINIAOD": {
@@ -60,7 +60,6 @@
                 "dataset": "/Muon1/Run2023D-PromptReco-v2/MINIAOD",
                 "globalTag": "130X_dataRun3_Prompt_v3"
             }
-
         },
         "AOD": {
             "Run2023B_M0": {

@@ -12,9 +12,45 @@
                 "dataset": "/DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v4/MINIAODSIM",
                 "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
             },
+            "DY_powheg_M10to50": {
+                "dataset": "/DYto2Mu_MLL-10to50_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M50to120": {
+                "dataset": "/DYto2Mu_MLL-50to120_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M120to200": {
+                "dataset": "/DYto2Mu_MLL-120to200_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M200to400": {
+                "dataset": "/DYto2Mu_MLL-200to400_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M400to800": {
+                "dataset": "/DYto2Mu_MLL-400to800_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M800to1500": {
+                "dataset": "/DYto2Mu_MLL-800to1500_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M1500to2500": {
+                "dataset": "/DYto2Mu_MLL-1500to2500_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M2500to4000": {
+                "dataset": "/DYto2Mu_MLL-2500to4000_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
+            "DY_powheg_M4000to6000": {
+                "dataset": "/DYto2Mu_MLL-4000to6000_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EEMiniAODv3-124X_mcRun3_2022_realistic_postEE_v1-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
+            },
             "Run2022E": {
-                "dataset": "/Muon/Run2022E-PromptReco-v1/MINIAOD",
-                "globalTag": "124X_dataRun3_Prompt_v4"
+                "dataset": "/Muon/Run2022E-22Sep2023-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_v15"
             },
             "Run2022F": {
                 "dataset": "/Muon/Run2022F-PromptReco-v1/MINIAOD",
@@ -22,21 +58,17 @@
             },
             "Run2022G": {
                 "dataset": "/Muon/Run2022G-PromptReco-v1/MINIAOD",
-                "globalTag": "124X_dataRun3_Prompt_v10"
+                "globalTag": "124X_dataRun3_Prompt_v4"
             }
         },
         "AOD": {
             "DY_madgraph": {
-                "dataset": "/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/Run3Summer22EEDRPremix-forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/AODSIM",
+                "dataset": "/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/Run3Summer22EEMiniAODv3-forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/AOD",
                 "globalTag": "124X_mcRun3_2022_realistic_postEE_v1"
             },
-            "DY_amcatnlo": {
-		"dataset": "/DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22EEDRPremix-124X_mcRun3_2022_realistic_postEE_v1-v4/AODSIM",
-		"glogalTag": "124X_mcRun3_2022_realistic_postEE_v1"
-	    },
             "Run2022E": {
-                "dataset": "/Muon/Run2022E-PromptReco-v1/AOD",
-                "globalTag": "124X_dataRun3_Prompt_v4"
+                "dataset": "/Muon/Run2022E-22Sep2023-v1/AOD",
+                "globalTag": "124X_dataRun3_v15"
             },
             "Run2022F": {
                 "dataset": "/Muon/Run2022F-PromptReco-v1/AOD",
@@ -44,7 +76,7 @@
             },
             "Run2022G": {
                 "dataset": "/Muon/Run2022G-PromptReco-v1/AOD",
-                "globalTag": "124X_dataRun3_Prompt_v10"
+                "globalTag": "124X_dataRun3_Prompt_v4"
             }
         }
     }
