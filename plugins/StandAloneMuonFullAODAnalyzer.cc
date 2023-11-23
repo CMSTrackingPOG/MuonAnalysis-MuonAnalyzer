@@ -16,7 +16,7 @@
 // Modified:
 //                Minseok Oh (Feb. 2021)
 //
-//
+// 
 
 // system include files
 #include <iostream>
@@ -400,9 +400,7 @@ void StandAloneMuonFullAODAnalyzer::embedTriggerMatching(const reco::Muon& mu,
   for (const auto& thefilter : HLTFilters) {
     TString thefilter_tstr = TString(thefilter);
     // temporary method to tag L2 filters for dSA paths...
-    // bool isL2DSA =
-    // thefilter_tstr.BeginsWith("hltL2") && (thefilter_tstr.Contains("NoVtx") || thefilter_tstr.Contains("NoVertex"));
-
+    
     bool matched = false;
     float matched_pt = -99;
     float matched_eta = -99;
@@ -458,10 +456,8 @@ void StandAloneMuonFullAODAnalyzer::StandAlone_embedTriggerMatching(const reco::
                                                                     const int& debug_ = 0) {
   for (const auto& thefilter : HLTFilters) {
     TString thefilter_tstr = TString(thefilter);
-    // temporary method to tag L2 filters for dSA paths...
-    // bool isL2DSA =
-    // thefilter_tstr.BeginsWith("hltL2") && (thefilter_tstr.Contains("NoVtx") || thefilter_tstr.Contains("NoVertex"));
-
+    // check matching between tag / probe and trigger objects
+    
     bool matched = false;
     float matched_pt = -99;
     float matched_eta = -99;
@@ -853,6 +849,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
   std::pair<std::vector<unsigned>, std::vector<unsigned>> associatedtrk_muon_map;
 
   // cout << " muon size " << muons->size() << endl;
+  // loop to compute numerator of tracking efficiency + fake rates
   for (const auto& mu : *muons) {
     if (!mu.isStandAloneMuon())
       continue;
@@ -865,60 +862,32 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     float minDR_assoc = 1000;
     unsigned int idx_trk;
     unsigned int idx_associatedtrk;
-    // int N_muontracks = mu.numberOfSourceCandidatePtrs();
-    //float eps = 1e-2;  // for associated trk to be matched DR and pt diff less than eps
     bool hasAssociatedTrkMatch = false;
     const reco::Track trk_mu = *mu.standAloneMuon();
     bool isAssoc = false;
     bool isZmass = false;
+    
     for (const reco::Track& trk : *tracks) {
 
       isZmass = false;
       isAssoc = false;
 
       if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
-          continue;
+          continue; // requirement on track
       
       for (const auto& tag : tag_trkttrk) {
       if (fabs(tag.first.vz() - trk.vz()) < maxdz_trk_SAmu_ ) { isAssoc = true; break; }
-      }
+      } // check displacement of tag from tracks, we want to do the matching only with no displaced tracks
 
       for (const auto& tag : tag_trkttrk) {
       float mass_tagtrack = DimuonMass(tag.first.pt(), tag.first.eta(), tag.first.phi(), trk.pt(), trk.eta(), trk.phi());
       if (mass_tagtrack >= 40 && mass_tagtrack <= 200) { isZmass = true; break; }
       }
-        // float charge_diff = trk_mu->charge() - trk.charge();
-        // float pt_diff = trk_mu->pt() - trk.pt();
-        // float eta_diff = trk_mu->eta() - trk.eta(); 
-        // float phi_diff = trk_mu->phi() - trk.phi();
         bool charge_match = trk_mu.charge() == trk.charge();
         bool pt_match = fabs(trk_mu.pt() - trk.pt())/trk.pt() < maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0;
-        //bool pt_match = fabs(trk_mu.pt() - trk.pt()) < 0.01;
         bool DeltaR_match = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi()) < maxdr_trk_SAmu_;
-        //bool DeltaR_match = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi()) < 0.01;
         bool DeltaEta_match = fabs(trk_mu.eta() - trk.eta()) < 0.3;
-        //bool DeltaZ_match = fabs(trk_mu.vz() - trk.vz()) < maxdz_trk_SAmu_ && maxdz_trk_SAmu_ > 0;
-        
-        // if(charge_match && DeltaR_match && !pt_match){
-        // cout << " Failed pt Event " << nt.event << " diff charge " <<  charge_diff << 
-        // " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl; 
-        // }
-        // if(charge_match && !DeltaR_match && pt_match){
-        // cout << " Failed deltaR Event " << nt.event << "  Check diff charge " <<  charge_diff << 
-        // " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl; 
-        // }
-        // if(!charge_match && DeltaR_match && pt_match){
-        // cout << " Failed charge Event " << nt.event << "  Check diff charge " <<  charge_diff << 
-        // " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl; 
-        // }
-        //if(0){
-        //if(!(trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
-        //  trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep)))
-        //continue;
-        //if((trk_mu.isAlgoInMask(trk_mu.initialStep) || trk_mu.isAlgoInMask(trk_mu.lowPtTripletStep) || trk_mu.isAlgoInMask(trk_mu.pixelPairStep) || trk_mu.isAlgoInMask(trk_mu.detachedTripletStep) ||
-        //  trk_mu.isAlgoInMask(trk_mu.mixedTripletStep) || trk_mu.isAlgoInMask(trk_mu.pixelLessStep) || trk_mu.isAlgoInMask(trk_mu.tobTecStep)))
-        //continue;
-        //}
+       
         if(charge_match && pt_match && DeltaR_match && isAssoc && DeltaEta_match && !(isZmass)) {
         // cout << " Passed Check Event " << nt.event << " diff charge " <<  charge_diff << " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl;
         if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
@@ -930,7 +899,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
        continue;
         idx_associatedtrk = &trk - &tracks->at(0);
         hasAssociatedTrkMatch = true;
-        //std::cout << "It has associatedTrkMatch! " << std::endl;
+        //std::cout << "It has track matched with a probe muon! " << std::endl;
       }
 
       if (SA_mu.charge() != trk.charge()) continue;
