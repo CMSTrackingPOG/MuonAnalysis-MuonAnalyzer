@@ -294,6 +294,7 @@ else:
 
 process.muon.isMC = options.isMC
 process.muon.includeJets = options.includeJets
+process.muon.isOnlySeeded = options.isOnlySeeded
 process.muon.era = options.era
 
 # Trigger matching
