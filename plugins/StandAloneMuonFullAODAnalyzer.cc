@@ -1532,7 +1532,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         StandAlone_nt.tag_isMatchedGen = genmatched_tag[&tag - &tag_trkttrk[0]];
 
         StandAloneFillTagBranches<reco::Muon, reco::Track>(tag.first, *tracks, StandAlone_nt, *pv);
-        if (minDR > maxdr_trk_mu_ || (!MatchingSatisfied)){
+        if (!(minDR > maxdr_trk_mu_ || (!MatchingSatisfied))){
           for (const reco::Track& trk : *tracks) {
           if(idx_trk_changept == &trk - &tracks->at(0)){
             StandAloneFillPairBranches<reco::Muon, reco::Track>(tag.first, trk, StandAlone_nt); 
