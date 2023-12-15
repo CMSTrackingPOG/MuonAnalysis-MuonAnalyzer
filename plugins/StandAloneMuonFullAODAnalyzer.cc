@@ -1488,7 +1488,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
             continue;
           if ((probe.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
             continue;
-          if (fabs(probe.vz() - trk.vz()) > maxdz_trk_mu_ && maxdz_trk_mu_ > 0)
+          if (fabs(tag.first.vz() - trk.vz()) > maxdz_trk_mu_ && maxdz_trk_mu_ > 0)
             continue;
           if (fabs(probe.eta() - trk.eta()) > 0.3)
             continue;
