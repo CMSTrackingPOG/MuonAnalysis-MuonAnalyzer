@@ -862,6 +862,10 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     float minDR_assoc = 1000;
     unsigned int idx_trk;
     unsigned int idx_associatedtrk;
+    unsigned int idx_tag_assoc;
+    unsigned int idx_tag_temp;
+    unsigned int 
+
     bool hasAssociatedTrkMatch = false;
     const reco::Track trk_mu = *mu.standAloneMuon();
     bool isAssoc = false;
@@ -876,12 +880,13 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
           continue; // requirement on track
       
       for (const auto& tag : tag_trkttrk) {
-      if (fabs(tag.first.vz() - trk.vz()) < maxdz_trk_SAmu_ ) { isAssoc = true; break; }
+      if (fabs(tag.first.vz() - trk.vz()) < maxdz_trk_SAmu_ ) { isAssoc = true; idx_tag_assoc = &tag - &tag_trkttrk[0]; break; }
       } // check displacement of tag from tracks, we want to do the matching only with no displaced tracks
 
       for (const auto& tag : tag_trkttrk) {
       float mass_tagtrack = DimuonMass(tag.first.pt(), tag.first.eta(), tag.first.phi(), trk.pt(), trk.eta(), trk.phi());
-      if (mass_tagtrack >= 40 && mass_tagtrack <= 200) { isZmass = true; break; }
+      idx_tag_temp = &tag - &tag_trkttrk[0]; 
+      if (mass_tagtrack >= 40 && mass_tagtrack <= 200 && idx_tag_temp == idx_tag_assoc) { isZmass = true; break; }
       }
         bool charge_match = trk_mu.charge() == trk.charge();
         bool pt_match = fabs(trk_mu.pt() - trk.pt())/trk.pt() < maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0;
