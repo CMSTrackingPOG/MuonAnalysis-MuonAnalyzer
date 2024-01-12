@@ -1482,6 +1482,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
           continue;
         // Add pt condition to take allTracks pT instead of StandAloneMuon
         bool MatchingSatisfied = false;
+        bool TagAndTagPair = false;
         float probePt = -999.;
         float probeEta = -999.;
         float probePhi = -999.;
@@ -1525,11 +1526,15 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         if (mass < pairMassMin_ || mass > pairMassMax_)
           continue;
 
-        math::PtEtaPhiMLorentzVector mu1(tag.first.pt(), tag.first.eta(), tag.first.phi(), MU_MASS);
-        math::PtEtaPhiMLorentzVector mu2(probePt, probeEta, probePhi, MU_MASS);
-
+        for (auto& tag : tag_trkttrk) {
+          if (abs(probePhi - tag.first.phi()) < 1e-5 && abs(probeEta - tag.first.eta()) < 1e-5 && abs(probePt - tag.first.pt()) < 1e-5)
+          TagAndTagPair = true;
+        }
         //filling tag and pair standalone ntuple info
 
+        if(TagAndTagPair)
+          continue;
+        
         StandAlone_embedTriggerMatching(
             tag.first, nt.trg_filter, nt.trg_pt, nt.trg_eta, nt.trg_phi, StandAlone_nt, tagFilters_, true, debug_);
 
@@ -1612,7 +1617,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         //     SA_pair_rank_dM_Z_Mmumu[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
 
         StandAlone_t1->Fill();
-      }
+      } // loop over probes
     }
   }
 }
