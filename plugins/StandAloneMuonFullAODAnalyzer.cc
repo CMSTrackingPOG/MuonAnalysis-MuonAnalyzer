@@ -864,7 +864,6 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     unsigned int idx_associatedtrk;
     unsigned int idx_tag_assoc;
     unsigned int idx_tag_temp;
-    unsigned int 
 
     bool hasAssociatedTrkMatch = false;
     const reco::Track trk_mu = *mu.standAloneMuon();
