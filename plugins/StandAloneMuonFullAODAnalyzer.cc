@@ -1534,7 +1534,8 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
 
         if(TagAndTagPair)
           continue;
-        
+        math::PtEtaPhiMLorentzVector mu1(tag.first.pt(), tag.first.eta(), tag.first.phi(), MU_MASS);
+        math::PtEtaPhiMLorentzVector mu2(probePt, probeEta, probePhi, MU_MASS);
         StandAlone_embedTriggerMatching(
             tag.first, nt.trg_filter, nt.trg_pt, nt.trg_eta, nt.trg_phi, StandAlone_nt, tagFilters_, true, debug_);
 
