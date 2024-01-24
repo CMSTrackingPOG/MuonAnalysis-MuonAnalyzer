@@ -874,6 +874,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
 
       isZmass = false;
       isAssoc = false;
+      hasAssociatedTrkMatch = false;
 
       if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
           continue; // requirement on track
@@ -901,9 +902,11 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
          trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
         if(!isTrackerOnlyseeded && isOnlySeeded_)
        continue;
+     if(minDR_assoc < deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
         idx_associatedtrk = &trk - &tracks->at(0);
         hasAssociatedTrkMatch = true;
         //std::cout << "It has track matched with a probe muon! " << std::endl;
+      }
       }
 
       if (SA_mu.charge() != trk.charge()) continue;
