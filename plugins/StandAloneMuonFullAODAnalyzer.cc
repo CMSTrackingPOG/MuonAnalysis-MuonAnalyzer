@@ -1458,10 +1458,12 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     if (debug_ > 0)
       std::cout << "New tag pt " << tag.first.pt() << " eta " << tag.first.eta() << " phi " << tag.first.phi()
                 << std::endl;
-
+    bool tagHasProbe = false;
     // Loop over stant alone muons
     if (saveStandAloneTree_) {
       for (const reco::Muon& tmp_probe : *muons) {
+        if (tagHasProbe) 
+          break;
         if (!tmp_probe.isStandAloneMuon())
           continue;
         if (!((*tmp_probe.standAloneMuon()).numberOfValidHits() > 0.))
