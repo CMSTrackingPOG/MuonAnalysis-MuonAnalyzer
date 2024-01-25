@@ -874,7 +874,6 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
 
       isZmass = false;
       isAssoc = false;
-      hasAssociatedTrkMatch = false;
 
       if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
           continue; // requirement on track
@@ -895,17 +894,14 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
        
         if(charge_match && pt_match && DeltaR_match && isAssoc && DeltaEta_match && !(isZmass)) {
         // cout << " Passed Check Event " << nt.event << " diff charge " <<  charge_diff << " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl;
-        if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
-          minDR_assoc = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi());
-        }
         bool isTrackerOnlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
          trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
         if(!isTrackerOnlyseeded && isOnlySeeded_)
        continue;
-     if(minDR_assoc < deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
+    if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
         idx_associatedtrk = &trk - &tracks->at(0);
         hasAssociatedTrkMatch = true;
-        //std::cout << "It has track matched with a probe muon! " << std::endl;
+        minDR_assoc = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi());
       }
       }
 
@@ -928,7 +924,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       minDR = DR;
       idx_trk = &trk - &tracks->at(0);
     }
-    if(hasAssociatedTrkMatch) {
+    if(hasAssociatedTrkMatch && (&trk == &tracks->back())) {
       associatedtrk_muon_map.first.push_back(idx_associatedtrk);
       associatedtrk_muon_map.second.push_back(&mu - &muons->at(0));
     }
