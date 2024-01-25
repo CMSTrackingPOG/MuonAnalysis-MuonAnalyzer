@@ -924,7 +924,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       minDR = DR;
       idx_trk = &trk - &tracks->at(0);
     }
-    if(hasAssociatedTrkMatch && (&trk == &tracks->back())) {
+    if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->back())) {
       associatedtrk_muon_map.first.push_back(idx_associatedtrk);
       associatedtrk_muon_map.second.push_back(&mu - &muons->at(0));
     }
