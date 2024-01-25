@@ -1619,6 +1619,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         //     SA_pair_rank_dM_Z_Mmumu[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
 
         StandAlone_t1->Fill();
+         tagHasProbe = true;
       } // loop over probes
     }
   }
