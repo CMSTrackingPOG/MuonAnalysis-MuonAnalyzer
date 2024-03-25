@@ -4,9 +4,9 @@ option for AOD run'''
 import FWCore.ParameterSet.Config as cms
 
 muon = cms.EDAnalyzer('StandAloneMuonFullAODAnalyzer',
-                      inputTag = cms.InputTag("LumiInfo", "brilcalc"),
+                      inputTag = cms.InputTag("siPixelRecHits"),
                       isMC=cms.bool(False),
-                      isOnlySeeded=cms.bool(False),
+                      isOnlySeeded=cms.bool(True),
                       includeJets=cms.bool(True),
                       era = cms.string('dummy'), # updated in run_muonAnalyzer_cfg.py
                       genEventInfo = cms.InputTag('generator'),

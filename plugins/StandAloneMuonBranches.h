@@ -129,20 +129,13 @@ inline void StandAloneFillTagBranches(const MUON &muon,
   nt.tag_nsegments = nsegments;
 }
 
-template <typename MUON, typename MUO, typename TRK>
-inline void StandAloneFillProbeBranches(const MUON &SAmu,
-                                        const std::vector<MUO> &muons,
+template <typename TRK>
+inline void StandAloneFillProbeBranches(
                                         const std::vector<TRK> &tracks,
                                         StandAloneNtupleContent &nt,
                                         const int match_muon_idx,
-                                        const reco::Vertex &vertex,
                                         const std::pair<std::vector<bool>, std::vector<reco::Track>> &match_tracks) {
-  nt.probe_pt = SAmu.pt();
-  nt.probe_eta = SAmu.eta();
-  nt.probe_phi = SAmu.phi();
-  nt.probe_charge = SAmu.charge();
-  float iso04 = (TrackerEnergy04<TRK>(SAmu.eta(), SAmu.phi(), tracks) - SAmu.pt()) / SAmu.pt();
-  nt.probe_relIso04 = (iso04 > 0) ? iso04 : 0;
+  
   // Boolean success --> muon obj and track match in dR
   if (match_tracks.first.size() >= 1) { //more than one track
     if (match_tracks.first.at(0)) { //match with the first reco track
@@ -157,7 +150,7 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probe_trkHits = match_track.numberOfValidHits();
       nt.probe_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probe_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
-      nt.probe_trk_SAmu_DeltaR = deltaR(match_track.eta(), match_track.phi(), SAmu.eta(), SAmu.phi());
+      
     }
   }
   if (match_tracks.first.size() >= 2) {
@@ -173,91 +166,11 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probeSA_trkHits = match_track.numberOfValidHits();
       nt.probeSA_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probeSA_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
-      nt.probeSA_trk_SAmu_DeltaR = deltaR(match_track.eta(), match_track.phi(), SAmu.eta(), SAmu.phi());
+      
     }
   }
-  if (match_muon_idx > -1) {
-    MUO mu = muons.at(match_muon_idx);
-    // Use selectors instead of 'mu.passed' method which is only introduced in CMSSW_9_4_X
-    nt.probe_mupt = mu.pt();
-    nt.probe_mueta = mu.eta();
-    nt.probe_muphi = mu.phi();
-    nt.probe_mucharge = mu.charge();
-    nt.probe_mu_SAmu_DeltaR = deltaR(mu.eta(), mu.phi(), SAmu.eta(), SAmu.phi());
-    nt.probe_isLoose = muon::isLooseMuon(mu);
-    nt.probe_isMedium = muon::isMediumMuon(mu);
-    nt.probe_isTight = muon::isTightMuon(mu, vertex);
-    nt.probe_isSoft = muon::isSoftMuon(mu, vertex, false);
-    nt.probe_isHighPt = muon::isHighPtMuon(mu, vertex);
-    nt.probe_isArbitratedTracker = muon::isGoodMuon(mu, muon::TrackerMuonArbitrated);
-    nt.probe_isPF = mu.isPFMuon();
-    nt.probe_isSA = mu.isStandAloneMuon();
-    nt.probe_isTracker = mu.isTrackerMuon();
-    nt.probe_isGlobal = mu.isGlobalMuon();
-    nt.probe_iso03_sumPt = mu.isolationR03().sumPt;
-    nt.probe_pfIso04_charged = mu.pfIsolationR04().sumChargedHadronPt;
-    nt.probe_pfIso04_neutral = mu.pfIsolationR04().sumNeutralHadronEt;
-    nt.probe_pfIso04_photon = mu.pfIsolationR04().sumPhotonEt;
-    nt.probe_pfIso04_sumPU = mu.pfIsolationR04().sumPUPt;
-    nt.probe_matchedStations = mu.numberOfMatchedStations();
-    nt.probe_expectedMatchedStations = mu.expectedNnumberOfMatchedStations();
-    nt.probe_RPCLayers = mu.numberOfMatchedRPCLayers();
-    nt.probe_stationMask = mu.stationMask();
-    nt.probe_nShowers = mu.numberOfShowers();
-    if (mu.globalTrack().isNonnull()) {
-      nt.probe_muonHits = mu.globalTrack()->hitPattern().numberOfValidMuonHits();
-      nt.probe_trkChi2 = mu.globalTrack()->normalizedChi2();
-    } else if (mu.innerTrack().isNonnull() && mu.innerTrack().isAvailable()) {
-      nt.probe_trkChi2 = mu.innerTrack()->normalizedChi2();
-      nt.probe_muonHits = mu.innerTrack()->hitPattern().numberOfValidMuonHits();
-    } else {
-      nt.probe_trkChi2 = -99;
-      nt.probe_muonHits = -99;
-    }
-    if (mu.innerTrack().isNonnull() && mu.innerTrack().isAvailable()) {
-      nt.probe_validFraction = mu.innerTrack()->validFraction();
-      nt.probe_trackerLayers = mu.innerTrack()->hitPattern().trackerLayersWithMeasurement();
-      nt.probe_pixelLayers = mu.innerTrack()->hitPattern().pixelLayersWithMeasurement();
-      nt.probe_pterr = mu.innerTrack()->ptError() / mu.innerTrack()->pt();
-      nt.probe_dxy = mu.innerTrack()->dxy(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
-      nt.probe_dz = mu.innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
-      nt.probe_pixelHits = mu.innerTrack()->hitPattern().numberOfValidPixelHits();
-    } else {
-      nt.probe_validFraction = -99;
-      nt.probe_trackerLayers = -99;
-      nt.probe_pixelLayers = -99;
-      nt.probe_pterr = -99;
-      nt.probe_dxy = -99;
-      nt.probe_dz = -99;
-      nt.probe_pixelHits = -99;
-    }
-    if (mu.outerTrack().isNonnull() && mu.outerTrack().isAvailable()) {
-      nt.probe_muonStations = mu.outerTrack()->hitPattern().muonStationsWithValidHits();
-      nt.probe_DTHits = mu.outerTrack()->hitPattern().numberOfValidMuonDTHits();
-      nt.probe_CSCHits = mu.outerTrack()->hitPattern().numberOfValidMuonCSCHits();
-    } else {
-      nt.probe_muonStations = -99;
-      nt.probe_muonHits = -99;
-      nt.probe_DTHits = -99;
-      nt.probe_CSCHits = -99;
-    }
-    nt.probe_positionChi2 = mu.combinedQuality().chi2LocalPosition;
-    nt.probe_trkKink = mu.combinedQuality().trkKink;
-    nt.probe_segmentCompatibility = muon::segmentCompatibility(mu);
-    nt.probe_isMuMatched = true;
-    int nsegments = 0;
-    for (auto &chamber : mu.matches()) {
-      if (chamber.id.det() != DetId::Muon)
-        continue;
-      if (chamber.id.subdetId() != MuonSubdetId::DT && chamber.id.subdetId() != MuonSubdetId::CSC)
-        continue;
-      nsegments += chamber.segmentMatches.size();
-    }
-    nt.probe_nsegments = nsegments;
-  }
-  // no successs (no match)
+  if (match_muon_idx <= -1) {
 
-  else {
     nt.probe_mupt = -99;
     nt.probe_mueta = -99;
     nt.probe_muphi = -99;

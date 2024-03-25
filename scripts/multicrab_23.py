@@ -216,7 +216,6 @@ def main():
         config.JobType.numCores = numThreads
         config.JobType.allowUndistributedCMSSW = True
         #config.JobType.maxMemoryMB = 4000
-        config.JobType.inputFiles = ['MuonAnalysis/MuonAnalyzer/test/lumiData.csv', 'MuonAnalysis/MuonAnalyzer/test/lumiMC.csv']
         config.Data.publication = False
         config.Data.allowNonValidInputDataset = True # for validation samples
 

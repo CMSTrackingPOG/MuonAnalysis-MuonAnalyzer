@@ -116,7 +116,7 @@ def getOptions():
 
     parser.add_option('-b', '--eraDB',
                       dest = 'eraDB',
-                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2023/database.json',
+                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2023/database_previous_mc.json',
                       help = "Database file. default: data/samples/muon/Z/Run2018_UL/database.json",
                       metavar = 'ERA_DB_FILE')
 
@@ -216,7 +216,7 @@ def main():
         config.JobType.numCores = numThreads
         config.JobType.allowUndistributedCMSSW = True
         #config.JobType.maxMemoryMB = 4000
-        config.JobType.inputFiles = ['MuonAnalysis/MuonAnalyzer/test/lumiData.csv', 'MuonAnalysis/MuonAnalyzer/test/lumiMC.csv']
+        #config.JobType.inputFiles = ['MuonAnalysis/MuonAnalyzer/test/lumiData.csv', 'MuonAnalysis/MuonAnalyzer/test/lumiMC.csv']
         config.Data.publication = False
         config.Data.allowNonValidInputDataset = True # for validation samples
 

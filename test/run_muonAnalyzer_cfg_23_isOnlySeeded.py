@@ -21,7 +21,7 @@ options.register('isFullAOD', True,
     "Set to False for MiniAOD datatier"
 )
 
-options.register('isMC',False,
+options.register('isMC',True,
     VarParsing.multiplicity.singleton,
     VarParsing.varType.bool,
     "Set to True for MC"
@@ -82,14 +82,16 @@ options.parseArguments()
 if options._beenSet['globalTag'] and options.globalTag != '':
     globaltag = options.globalTag
 else:
-    globaltag = '130X_dataRun3_Prompt_v3' if not options.isMC else '124X_mcRun3_2022_realistic_v12'
+    globaltag = '130X_dataRun3_Prompt_v3' if not options.isMC else '130X_mcRun3_2023_realistic_postBPix_v2'
     
 # Run local test if no input files provided
 if len(options.inputFiles) == 0:
     if options.resonance == 'Z':
         if options.isFullAOD:
             if options.isMC:
-                options.inputFiles.append('/store/mc/Run3Summer22DRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/forPOG_124X_mcRun3_2022_realistic_v12-v4/70000/000f361a-3c4d-41b3-bf29-2bba3f76b470.root')
+                options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/004b3105-d392-4fdb-b0a5-b355c71db0ac.root')
+                options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/0037e224-e1e0-48a5-b307-0c27bbe20aa7.root')
+                options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/005f14db-fe48-40df-be32-107b56f43bc4.root')
                 #options.inputFiles.append('/store/mc/Run3Summer22EEDRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/2810000/002cda4f-e18b-4323-981b-9e06c13e0d67.root')
                 #options.inputFiles.append('/store/mc/Run3Summer22EEDRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/2810000/00322bd6-3a2c-4583-bc4f-5f9a51098644.root')
                 #options.inputFiles.append('/store/mc/Run3Winter22DRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/122X_mcRun3_2021_realistic_v9_ext2-v2/40000/0027e0ac-873f-4f49-884b-4c5b67c85724.root')
@@ -345,23 +347,12 @@ from MuonAnalysis.MuonAnalyzer.selectorInfo_cff import getSelectorNamesAndBits
 selectorNames, selectorBits = getSelectorNamesAndBits(options.era, options.isFullAOD)
 process.muon.probeSelectorNames = cms.vstring(selectorNames)
 process.muon.probeSelectorBits = cms.vuint32(selectorBits)
-if not options.isMC:
-    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
-                                      lumiFile = cms.string("lumiData.csv"),
-                                      throwIfNotFound = cms.bool(False),
-                                      doBunchByBunch = cms.bool(False)
-                                      )
-else:
-    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
-                                      lumiFile = cms.string("lumiMC.csv"),
-                                      throwIfNotFound = cms.bool(False),
-                                      doBunchByBunch = cms.bool(False)
-                                      )
+
 if options.isFullAOD:
     if options.includeJets:
         if not options.isMC:
 	        process.analysis_step = cms.Path(
-                process.LumiInfo +
+
                 process.primaryVertexAssociation +
                 process.offlineSlimmedPrimaryVertices +
                 process.packedCandsForMuons +
@@ -372,7 +363,7 @@ if options.isFullAOD:
             )
         else:
             process.analysis_step = cms.Path(
-                process.LumiInfo +
+
                 process.primaryVertexAssociation +
                 process.offlineSlimmedPrimaryVertices +
                 process.packedCandsForMuons +
@@ -383,7 +374,6 @@ if options.isFullAOD:
 	    )
     else:
         process.analysis_step = cms.Path(
-            process.LumiInfo +
             process.primaryVertexAssociation +
             process.offlineSlimmedPrimaryVertices +
             process.packedCandsForMuons +
@@ -395,7 +385,7 @@ else:
     if options.includeJets:
         if not options.isMC:
             process.analysis_step = cms.Path(
-                process.LumiInfo+
+               
                 process.muonL1Info +
                 process.muonL1InfoByQ +
                 process.ak4PFCHSL1FastL2L3ResidualCorrectorChain +
@@ -403,7 +393,7 @@ else:
             )
         else:
             process.analysis_step = cms.Path(
-                process.LumiInfo+
+           
                 process.muonL1Info +
                 process.muonL1InfoByQ +
                 process.ak4PFCHSL1FastL2L3CorrectorChain +
@@ -411,7 +401,7 @@ else:
             )
     else:
         process.analysis_step = cms.Path(
-            process.LumiInfo+
+           
             process.muonL1Info +
             process.muonL1InfoByQ +
             process.muSequence

@@ -1055,9 +1055,7 @@ void StandAloneMuonMiniAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         }
         
 
-        //filling standalone probe ntuple info
-        StandAloneFillProbeBranches<reco::Muon, pat::Muon, pat::PackedCandidate>(
-            fakeMuon, *muons, tracks, StandAlone_nt, match_muon_idx, *pv, match_tracks);
+        
         StandAlone_nt.probe_numofassoctrks = tmp_probe.numberOfSourceCandidatePtrs();
         if (iEvent.isRealData())
           StandAloneFillSimMatchingBranchesDummy(StandAlone_nt, true);
