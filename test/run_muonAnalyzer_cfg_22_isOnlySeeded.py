@@ -133,11 +133,12 @@ if len(options.inputFiles) == 0:
                 #options.inputFiles.append('/store/data/Run2022C/SingleMuon/AOD/PromptReco-v1/000/355/872/00000/3f9e0173-a854-4ea1-ae6d-40e195382a7f.root')
                 #options.inputFiles.append('/store/data/Run2022C/SingleMuon/AOD/PromptReco-v1/000/355/912/00000/6774548a-e4f3-4702-9ced-1e7d2e01cb64.root')
                 #options.inputFiles.append('file:/afs/cern.ch/user/b/bdanzi/TRKPOG_22/CMSSW_12_4_6/src/MuonAnalysis/MuonAnalyzer/test/test.root')
-                options.inputFiles.append('/store/data/Run2022D/Muon/AOD/PromptReco-v2/000/357/898/00000/d3997753-5eb5-4f37-b08d-cefcc6845482.root')
-                options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/22fedd32-70ca-4555-8779-9e1ffb10ec61.root')
-                options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/445ce53a-4b6c-41cd-af8e-31e74c2b0562.root')
-                options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/96cf0f3c-8aa0-45db-b898-a3820a80ecba.root')
-                options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/437/00000/3aea6403-c06c-4064-9d7a-4e2e57dbd020.root')
+                #options.inputFiles.append('/store/data/Run2022D/Muon/AOD/PromptReco-v2/000/357/898/00000/d3997753-5eb5-4f37-b08d-cefcc6845482.root')
+                #options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/22fedd32-70ca-4555-8779-9e1ffb10ec61.root')
+                #options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/445ce53a-4b6c-41cd-af8e-31e74c2b0562.root')
+                #options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/433/00000/96cf0f3c-8aa0-45db-b898-a3820a80ecba.root')
+                #options.inputFiles.append('/store/data/Run2022G/Muon/AOD/PromptReco-v1/000/362/437/00000/3aea6403-c06c-4064-9d7a-4e2e57dbd020.root')
+                options.inputFiles.append('/store/data/Run2022B/SingleMuon/AOD/27Jun2023-v1/2820000/92293570-106e-4c78-8029-c3853b8f2537.root')
         else:
             if options.isMC:
                 #options.inputFiles.append('/store/mc/Run3Winter22MiniAOD/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/MINIAODSIM/122X_mcRun3_2021_realistic_v9_ext2-v2/40000/003d71c2-23aa-40cb-877a-2e6b5ac9befc.root')
@@ -295,7 +296,7 @@ else:
 process.muon.isMC = options.isMC
 process.muon.includeJets = options.includeJets
 process.muon.era = options.era
-process.muon.isOnlySeeded = options.isOnlySeeded
+process.muon.isOnlySeeded=options.isOnlySeeded
 
 # Trigger matching
 muonSrc = "muons" if options.isFullAOD else "slimmedMuons"

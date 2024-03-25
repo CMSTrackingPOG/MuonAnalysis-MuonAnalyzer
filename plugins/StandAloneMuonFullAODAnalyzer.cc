@@ -382,8 +382,8 @@ void StandAloneMuonFullAODAnalyzer::fillHLTmuon(const edm::Event& iEvent,
         trg_pt.push_back(foundObject.pt());
         trg_eta.push_back(foundObject.eta());
         trg_phi.push_back(foundObject.phi());
-        if (debug_ > 0)
-          std::cout << "Trg muon " << foundObject.pt() << std::endl;
+       // if (debug_ > 0)
+       //   std::cout << "Trg muon " << foundObject.pt() << std::endl;
       }
     }
   }
@@ -420,10 +420,10 @@ void StandAloneMuonFullAODAnalyzer::embedTriggerMatching(const reco::Muon& mu,
         matched_phi = trg_phi.at(itrg);
         matched_dr = dR_tmp;
 
-        if (debug_ > 0) {
-          std::cout << "embedTriggerMatching: isTag=" << isTag << "  filter=" << thefilter_tstr << "  dR=" << dR_tmp
-                    << "  matched=" << matched << std::endl;
-        }
+       // if (debug_ > 0) {
+       //   std::cout << "embedTriggerMatching: isTag=" << isTag << "  filter=" << thefilter_tstr << "  dR=" << dR_tmp
+       //             << "  matched=" << matched << std::endl;
+        //}
       }
     }
 
@@ -476,10 +476,10 @@ void StandAloneMuonFullAODAnalyzer::StandAlone_embedTriggerMatching(const reco::
         matched_eta = trg_eta.at(itrg);
         matched_phi = trg_phi.at(itrg);
         matched_dr = dR_tmp;
-        if (debug_ > 0) {
-          std::cout << "StandAlone_embedTriggerMatching: isTag=" << isTag << "  filter=" << thefilter_tstr
-                    << "  dR=" << dR_tmp << "  matched=" << matched << std::endl;
-        }
+        //if (debug_ > 0) {
+        //  std::cout << "StandAlone_embedTriggerMatching: isTag=" << isTag << "  filter=" << thefilter_tstr
+        //            << "  dR=" << dR_tmp << "  matched=" << matched << std::endl;
+        //}
       }
     }
     if (isTag) {
@@ -644,8 +644,8 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
   nt.trueNumInteractions = trueNumInteractions;
   nt.puNumInteractions = puNumInteractions;
 
-  if (debug_ > 0)
-    std::cout << "New Evt " << nt.run << std::endl;
+ // if (debug_ > 0)
+ //   std::cout << "New Evt " << nt.run << std::endl;
 
   reco::TrackBase::Point vertex_point;
   bool goodVtx = false;
@@ -663,11 +663,11 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     pv = &vtx;
     break;
   }
-  if (goodVtx){
-    std::cout << "GoodVtx found!" << std::endl;  // going on in presence of good vertex
-  }
+  //if (goodVtx){
+   // std::cout << "GoodVtx found!" << std::endl;  // going on in presence of good vertex
+  //}
   if (!goodVtx){
-    std::cout << "No goodVtx found!" << std::endl;
+    //std::cout << "No goodVtx found!" << std::endl;
     return;  // skipping in absence of good vertex
   }
   vertex_point.SetCoordinates(nt.pv_x, nt.pv_y, nt.pv_z);
@@ -720,16 +720,17 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       minDR = deltaR(nt.trg_eta[itrg], nt.trg_phi[itrg], mu.eta(), mu.phi());
       idx = &mu - &muons->at(0);
     }
-    if (debug_ > 0)
-      std::cout << "Trg " << itrg << ", min DR " << minDR << std::endl;
+    //if (debug_ > 0)
+    //  std::cout << "Trg " << itrg << ", min DR " << minDR << std::endl;
     if (minDR < trgDRwindow_)
       trg_idx.push_back(idx);
-    if (minDR < trgDRwindow_ && debug_ > 0)
-      std::cout << "Matched!" << std::endl;
+    //if (minDR < trgDRwindow_ && debug_ > 0)
+    //  std::cout << "Matched!" << std::endl;
   }
   nt.nmuons = muons->size();
 
   // select tags
+  //std::cout << "sto entrando nel loop dei tags" << std::endl;
   int tag_muon_index = 0;
   std::vector<unsigned> tag_muon_map;  // idx of tag muon in muons
   RecoTrkAndTransientTrkCollection tag_trkttrk;
@@ -756,9 +757,9 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
   }
   nt.ntag = tag_trkttrk.size();
 
-  if (debug_ > 0)
-    std::cout << "Tag muons " << tag_trkttrk.size() << std::endl;
-
+ // if (debug_ > 0) {
+ //   std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
+ // }
   // probe track mapping with muon object
   std::pair<std::vector<unsigned>, std::vector<unsigned>> trk_muon_map;
   for (const auto& mu : *muons) {
@@ -766,8 +767,8 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       continue;
     float minDR = 1000;
     unsigned int idx_trk;
-    if (debug_ > 1)
-      std::cout << "New trk-muon map entry pt " << mu.pt() << " eta " << mu.eta() << " phi " << mu.phi() << std::endl;
+    //if (debug_ > 1)
+    //  std::cout << "New trk-muon map entry pt " << mu.pt() << " eta " << mu.eta() << " phi " << mu.phi() << std::endl;
     for (const reco::Track& trk : *tracks) {
       if (mu.charge() != trk.charge())
         continue;
@@ -780,9 +781,9 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       if (fabs(mu.pt() - trk.pt()) / mu.pt() > maxpt_relative_dif_trk_mu_ && maxpt_relative_dif_trk_mu_ > 0)
         continue;
       float DR = deltaR(mu.eta(), mu.phi(), trk.eta(), trk.phi());
-      if (debug_ > 1)
-        std::cout << "   DR " << DR << "  " << mu.eta() << "  " << mu.phi() << "  " << trk.eta() << "  " << trk.phi()
-                  << std::endl;
+      //if (debug_ > 1)
+      //  std::cout << "   DR " << DR << "  " << mu.eta() << "  " << mu.phi() << "  " << trk.eta() << "  " << trk.phi()
+      //            << std::endl;
       if (minDR < DR)
         continue;
       minDR = DR;
@@ -793,8 +794,8 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     trk_muon_map.first.push_back(idx_trk);
     trk_muon_map.second.push_back(&mu - &muons->at(0));
   }
-  if (debug_ > 0)
-    std::cout << "Matched trk-mu " << trk_muon_map.first.size() << std::endl;
+  //if (debug_ > 0)
+  //  std::cout << "Matched trk-mu " << trk_muon_map.first.size() << std::endl;
 
   //SA probe track mapping with StandAlone muon object
   std::pair<std::vector<unsigned>, std::vector<unsigned>> SA_trk_muon_map;
@@ -808,13 +809,13 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     const reco::Track mu = *tmp_mu.standAloneMuon();
     float minDR = 1000;
     unsigned int idx_trk;
-    if (debug_ > 0)
-      std::cout << "Standalone New trk-muon map entry pt " << mu.pt() << " eta " << mu.eta() << " phi " << mu.phi()
-                << " vz " << mu.vz() << std::endl;
+   // if (debug_ > 0)
+   //   std::cout << "Standalone New trk-muon map entry pt " << mu.pt() << " eta " << mu.eta() << " phi " << mu.phi()
+   //             << " vz " << mu.vz() << std::endl;
     for (const reco::Track& trk : *tracks) {
-      if (debug_ > 1)
-        std::cout << "Trk New trk-muon map entry pt " << trk.pt() << " eta " << trk.eta() << " phi " << trk.phi()
-                  << " vz " << trk.vz() << std::endl;
+     // if (debug_ > 1)
+     //   std::cout << "Trk New trk-muon map entry pt " << trk.pt() << " eta " << trk.eta() << " phi " << trk.phi()
+     //             << " vz " << trk.vz() << std::endl;
       if (mu.charge() != trk.charge())
         continue;
       if ((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
@@ -828,9 +829,9 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       float DR = deltaR(mu.eta(), mu.phi(), trk.eta(), trk.phi());
       if (minDR < DR)
         continue;
-      if (debug_ > 1)
-        std::cout << "   DR " << DR << "  " << mu.eta() << "  " << mu.phi() << "  " << trk.eta() << "  " << trk.phi()
-                  << std::endl;
+     // if (debug_ > 1)
+     //   std::cout << "   DR " << DR << "  " << mu.eta() << "  " << mu.phi() << "  " << trk.eta() << "  " << trk.phi()
+     //             << std::endl;
       minDR = DR;
       idx_trk = &trk - &tracks->at(0);
     }
@@ -841,15 +842,22 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     SA_trk_muon_map.first.push_back(idx_trk);
     SA_trk_muon_map.second.push_back(&tmp_mu - &muons->at(0));
   }
-  if (debug_ > 0)
-    std::cout << "Matched Standalone trk-mu " << SA_trk_muon_map.first.size() << std::endl;
+ // if (debug_ > 0)
+ //   std::cout << "Matched Standalone trk-mu " << SA_trk_muon_map.first.size() << std::endl;
 
   // MN loop to match standalone muons to closest trk in DR and associated trk if exists
   std::pair<std::vector<unsigned>, std::vector<unsigned>> trk_SAmuon_map;
   std::pair<std::vector<unsigned>, std::vector<unsigned>> associatedtrk_muon_map;
+  
+ //  if (debug_ > 0) {
+ // 
+ //     std::cout << std::endl << "NUOVO EVENTO" << std::endl << std::endl;
+ //     std::cout << "New Evt " << nt.event << std::endl;
+ //     std::cout << "Run " << nt.run << std::endl;
+ //     std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
+ // }  
 
-  // cout << " muon size " << muons->size() << endl;
-  // loop to compute numerator of tracking efficiency + fake rates
+  // loop to compute numerator of tracking efficiency + fake rate
   for (const auto& mu : *muons) {
     if (!mu.isStandAloneMuon())
       continue;
@@ -862,7 +870,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
     float minDR_assoc = 1000;
     unsigned int idx_trk;
     unsigned int idx_associatedtrk;
-    unsigned int idx_tag_assoc;
+    unsigned int idx_tag_assoc = 0;
     unsigned int idx_tag_temp;
 
     bool hasAssociatedTrkMatch = false;
@@ -887,27 +895,34 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
       idx_tag_temp = &tag - &tag_trkttrk[0]; 
       if (mass_tagtrack >= 40 && mass_tagtrack <= 200 && idx_tag_temp == idx_tag_assoc) { isZmass = true; break; }
       }
-        bool charge_match = trk_mu.charge() == trk.charge();
-        bool pt_match = fabs(trk_mu.pt() - trk.pt())/trk.pt() < maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0;
-        bool DeltaR_match = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi()) < maxdr_trk_SAmu_;
-        bool DeltaEta_match = fabs(trk_mu.eta() - trk.eta()) < 0.3;
-       
-        if(charge_match && pt_match && DeltaR_match && isAssoc && DeltaEta_match && !(isZmass)) {
-        // cout << " Passed Check Event " << nt.event << " diff charge " <<  charge_diff << " pt " <<  pt_diff <<  " eta " <<  eta_diff << " phi " <<  phi_diff << endl;
-        bool isTrackerOnlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
-         trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
-        if(!isTrackerOnlyseeded && isOnlySeeded_)
-       continue;
-    if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
-        idx_associatedtrk = &trk - &tracks->at(0);
-        hasAssociatedTrkMatch = true;
-        minDR_assoc = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi());
-      }
-if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->back())) {
-      associatedtrk_muon_map.first.push_back(idx_associatedtrk);
-      associatedtrk_muon_map.second.push_back(&mu - &muons->at(0));
-    }
-      }
+
+      bool charge_match = trk_mu.charge() == trk.charge();
+      bool pt_match = fabs(trk_mu.pt() - trk.pt())/trk.pt() < maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0;
+      bool DeltaR_match = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi()) < maxdr_trk_SAmu_;
+      bool DeltaEta_match = fabs(trk_mu.eta() - trk.eta()) < 0.3;
+    
+      if(charge_match && pt_match && DeltaR_match && isAssoc && DeltaEta_match && !(isZmass)) {
+      
+       if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
+         minDR_assoc = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi());
+       }
+       bool isTrackerOnlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
+        trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
+         if(!isTrackerOnlyseeded && isOnlySeeded_)
+           continue;
+         if(minDR_assoc >= deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi())){
+           idx_associatedtrk = &trk - &tracks->at(0);
+           hasAssociatedTrkMatch = true;
+           minDR_assoc = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi());
+         }
+         if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->back())) {
+           associatedtrk_muon_map.first.push_back(idx_associatedtrk);         // stora indice traccia
+           associatedtrk_muon_map.second.push_back(&mu - &muons->at(0)); // stora indice muone  
+           //std::cout << " Salved a fake matching in the map! " << std::endl;
+           //std::cout << " muon index: " << &mu - &muons->at(0) << std::endl;
+           //std::cout << " track index: " << idx_associatedtrk  << std::endl;
+         }
+       }
 
       if (SA_mu.charge() != trk.charge()) continue;
       bool isTrackeronlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
@@ -927,12 +942,18 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
         continue;
       minDR = DR;
       idx_trk = &trk - &tracks->at(0);
- }
+    }
+   
+
     if(minDR > maxdr_trk_SAmu_)
       continue;
-    trk_SAmuon_map.first.push_back(idx_trk);
-    trk_SAmuon_map.second.push_back(&mu - &muons->at(0));
-    //std::cout<< "primo step" << std::endl;
+    trk_SAmuon_map.first.push_back(idx_trk);                          //stora indice traccia
+    trk_SAmuon_map.second.push_back(&mu - &muons->at(0));             //stora indice muone
+  
+      //std::cout << " Saved a matching in the map! " << std::endl;
+      //std::cout << " muon index " << &mu - &muons->at(0) << std::endl;
+      //std::cout << " track index: " <<  idx_trk << std::endl;
+
   }
   
   // cout << " Check Assoc Vec Size " << associatedtrk_muon_map.first.size() << " Track Match Size" 
@@ -1072,11 +1093,11 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
             for (auto& segment : chamber.segmentMatches) {
               if (fabs(segment.x - hit->localPosition().x()) < 1e-6 &&
                   fabs(segment.y - hit->localPosition().y()) < 1e-6) {
-                if (debug_)
-                  std::cout << "matched segment found!!! subdet "
-                            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
-                            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
-                            << std::endl;
+                //if (debug_)
+                //  std::cout << "matched segment found!!! subdet "
+                //            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
+                //            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
+                //            << std::endl;
                 nmatches++;
                 break;
               }
@@ -1144,11 +1165,11 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
             for (auto& segment : chamber.segmentMatches) {
               if (fabs(segment.x - hit->localPosition().x()) < 1e-6 &&
                   fabs(segment.y - hit->localPosition().y()) < 1e-6) {
-                if (debug_)
-                  std::cout << "matched segment found!!! subdet "
-                            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
-                            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
-                            << std::endl;
+                //if (debug_)
+                //  std::cout << "matched segment found!!! subdet "
+                //            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
+                //            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
+                //            << std::endl;
                 nmatches++;
                 break;
               }
@@ -1205,11 +1226,11 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
             for (auto& segment : chamber.segmentMatches) {
               if (fabs(segment.x - hit->localPosition().x()) < 1e-6 &&
                   fabs(segment.y - hit->localPosition().y()) < 1e-6) {
-                if (debug_)
-                  std::cout << "matched segment found!!! subdet "
-                            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
-                            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
-                            << std::endl;
+                //if (debug_)
+                //  std::cout << "matched segment found!!! subdet "
+                //            << ((chamber.id.subdetId() == MuonSubdetId::DT) ? "DT" : "CSC")
+                //            << " id = " << chamber.id.rawId() << " x = " << segment.x << " y = " << segment.y
+                //            << std::endl;
                 nmatches++;
                 break;
               }
@@ -1370,9 +1391,9 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
        if (!((*tmp_probe.standAloneMuon()).numberOfValidHits() > 0.))
           continue;
        const reco::Track probe = *tmp_probe.standAloneMuon();
-       if (debug_ > 1)
-         std::cout << "    Probe pt " << probe.pt() << " eta " << probe.eta() << " phi " << probe.phi() << "  charge "
-                   << probe.charge() << std::endl;
+       //if (debug_ > 1)
+       //  std::cout << "    Probe pt " << probe.pt() << " eta " << probe.eta() << " phi " << probe.phi() << "  charge "
+       //            << probe.charge() << std::endl;
 
        // apply cuts on probe
        if (!probeSelection_(probe))
@@ -1401,11 +1422,15 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
        SA_pair_dM_Z_Mmumu.push(std::make_pair(dM_Z_Mmumu, pair_idx));
      }
    }
-   std::cout<< "Sesto step" << std::endl;
+   //std::cout<< "Sesto step" << std::endl;
    nt.npairs = pair_vtx_probs.size();
    StandAlone_nt.npairs = SA_pair_vtx_probs.size();
 
    // assign sorted vtx indices to ranking
+
+   //definisce una serie di mappe che non usiamo:
+
+
    map<std::pair<int, int>, int> pair_rank_vtx_prob;
    while (!pair_vtx_probs.empty()) {
      pair_rank_vtx_prob[pair_vtx_probs.top().second] = pair_rank_vtx_prob.size();  // careful: RHS evaluated first
@@ -1452,107 +1477,64 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
      SA_pair_dM_Z_Mmumu.pop();
    }
 
-  // Final pair selection now run again to select probes
-  // loop over tags
+  // Final pair selection now run again to save tag and probe pairs
+
   for (auto& tag : tag_trkttrk) {
-    if (debug_ > 0)
-      std::cout << "New tag pt " << tag.first.pt() << " eta " << tag.first.eta() << " phi " << tag.first.phi()
-                << std::endl;
+
     bool tagHasProbe = false;
-    // Loop over stant alone muons
+
     if (saveStandAloneTree_) {
       for (const reco::Muon& tmp_probe : *muons) {
+       
         if (tagHasProbe) 
-          break;
+          break;   //esco dal ciclo sui probes appena riesco ad associare un probe al tag corrente   
+         
+     
         if (!tmp_probe.isStandAloneMuon())
           continue;
         if (!((*tmp_probe.standAloneMuon()).numberOfValidHits() > 0.))
           continue;
         const reco::Track probe = *tmp_probe.standAloneMuon();
-        if (debug_ > 1)
-          std::cout << "    Probe pt " << probe.pt() << " eta " << probe.eta() << " phi " << probe.phi() << "  charge "
-                    << probe.charge() << std::endl;
 
         // apply cuts on probe
         if (!probeSelectionSA_(probe))
           continue;
         if (muonOnly_ && !probeMuonSelection_(tmp_probe))
            continue;
-        // apply cuts on pairs; selected will be saved
         if (tag.first.charge() == probe.charge())
           continue;
-        // Add pt condition to take allTracks pT instead of StandAloneMuon
-        bool MatchingSatisfied = false;
+
         bool TagAndTagPair = false;
-        float probePt = -999.;
-        float probeEta = -999.;
-        float probePhi = -999.;
-        float minDR = 100000;
-        int idx_trk_changept = -1;
-        for (const reco::Track& trk : *tracks) {
-          if (probe.charge() != trk.charge()) 
-            continue;
-          if ((probe.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
-            continue;
-          if (fabs(tag.first.vz() - trk.vz()) > maxdz_trk_mu_ && maxdz_trk_mu_ > 0)
-            continue;
-          if (fabs(probe.eta() - trk.eta()) > 0.3)
-            continue;
-          if (fabs(probe.pt() - trk.pt()) / probe.pt() > maxpt_relative_dif_trk_mu_ && maxpt_relative_dif_trk_mu_ > 0)
-            continue;
-          bool isTrackerOnlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
-          trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
-          if(!isTrackerOnlyseeded && isOnlySeeded_)
-          continue;
-          float DR = deltaR(probe.eta(), probe.phi(), trk.eta(), trk.phi());
-          if (debug_ > 1)
-            std::cout << "   DR " << DR << "  " << probe.eta() << "  " << probe.phi() << "  " << trk.eta() << "  " << trk.phi()
-                      << std::endl;
-          if (minDR < DR)
-            continue;
-          minDR = DR;
-          idx_trk_changept = &trk - &tracks->at(0);  
-          probePt = trk.pt();
-          probeEta = trk.eta();
-          probePhi = trk.phi();
-          MatchingSatisfied = true;
-          }
-          if (minDR > maxdr_trk_mu_ || (!MatchingSatisfied))
-          {
-            probePt  = probe.pt();
-            probeEta = probe.eta();
-            probePhi = probe.phi();
-          }
-        float mass = DimuonMass(tag.first.pt(), tag.first.eta(), tag.first.phi(), probePt, probeEta, probePhi);
+      
+        float mass = DimuonMass(tag.first.pt(), tag.first.eta(), tag.first.phi(), probe.pt(), probe.eta(), probe.phi());
+       
         if (mass < pairMassMin_ || mass > pairMassMax_)
           continue;
+        
 
-        for (auto& tag : tag_trkttrk) {
-          if (abs(probePhi - tag.first.phi()) < 1e-5 && abs(probeEta - tag.first.eta()) < 1e-5 && abs(probePt - tag.first.pt()) < 1e-5)
-          TagAndTagPair = true;
-        }
-        //filling tag and pair standalone ntuple info
+       for (auto& tag : tag_trkttrk) {
+         if (abs(probe.phi() - tag.first.phi()) < 1e-5 && abs(probe.eta() - tag.first.eta()) < 1e-5 && abs(probe.pt() - tag.first.pt()) < 1e-5)
+         TagAndTagPair = true;
+       }
 
-        if(TagAndTagPair)
-          continue;
-        math::PtEtaPhiMLorentzVector mu1(tag.first.pt(), tag.first.eta(), tag.first.phi(), MU_MASS);
-        math::PtEtaPhiMLorentzVector mu2(probePt, probeEta, probePhi, MU_MASS);
+       if(TagAndTagPair) {
+         continue;
+       }
+
+      math::PtEtaPhiMLorentzVector mu2(probe.pt(), probe.eta(), probe.phi(), MU_MASS);  
+
+
+      //filling tag and pair standalone ntuple info
+
         StandAlone_embedTriggerMatching(
             tag.first, nt.trg_filter, nt.trg_pt, nt.trg_eta, nt.trg_phi, StandAlone_nt, tagFilters_, true, debug_);
 
         StandAlone_nt.tag_isMatchedGen = genmatched_tag[&tag - &tag_trkttrk[0]];
 
         StandAloneFillTagBranches<reco::Muon, reco::Track>(tag.first, *tracks, StandAlone_nt, *pv);
-        if (!(minDR > maxdr_trk_mu_ || (!MatchingSatisfied))){
-          for (const reco::Track& trk : *tracks) {
-          if(idx_trk_changept == &trk - &tracks->at(0)){
-            StandAloneFillPairBranches<reco::Muon, reco::Track>(tag.first, trk, StandAlone_nt); 
-          }
-          }
-        }
-        else{
-          StandAloneFillPairBranches<reco::Muon, reco::Track>(tag.first, probe, StandAlone_nt);
-        }
+
+        StandAloneFillPairBranches<reco::Muon, reco::Track>(tag.first, probe, StandAlone_nt);
+
         auto tagRef = muonsView->refAt(tag_muon_map[&tag - &tag_trkttrk[0]]);
         if (!simInfoIsAvailalbe) {
           StandAloneFillSimMatchingBranchesDummy(StandAlone_nt, true);
@@ -1572,13 +1554,13 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
         int assoc_trk_idx = -99;
         int match_muon_idx = &tmp_probe - &muons->at(0);
         std::pair<std::vector<bool>, std::vector<reco::Track>> match_tracks;
-        if (it != trk_SAmuon_map.second.end()) {
+        if (it != trk_SAmuon_map.second.end()) {           
           unsigned idx = std::distance(trk_SAmuon_map.second.begin(), it);
           match_trk_idx = trk_SAmuon_map.first[idx];
           match_tracks.first.push_back(true);
           match_tracks.second.push_back(tracks->at(match_trk_idx));
         }
-        if (it == trk_SAmuon_map.second.end()) {
+        if (it == trk_SAmuon_map.second.end()) {     // se it punta alla fine del vettore (no matching), si prende la traccia di default
           match_tracks.first.push_back(false);
           match_tracks.second.push_back(tracks->at(0));
         }
@@ -1592,13 +1574,14 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
         if (assoc_it == associatedtrk_muon_map.second.end()) {
           match_tracks.first.push_back(false);         
           match_tracks.second.push_back(tracks->at(0));
+  
         }
-        //std::cout<< "Ottavo step" << std::endl;
-        
-        
+   
         // filling probe standalone ntuple info
+    
         StandAloneFillProbeBranches<reco::Muon, reco::Muon, reco::Track>(
             fakeMuon, *muons, *tracks, StandAlone_nt, match_muon_idx, *pv, match_tracks);
+
         if (includeJets_)
           FindJetProbePair<reco::PFJet, reco::Muon>(corrJets, fakeMuon, StandAlone_nt);
 
@@ -1611,19 +1594,18 @@ if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->b
         }
 
         StandAlone_nt.iprobe++;
-        // StandAlone_nt.pair_rank_vtx_prob = SA_pair_rank_vtx_prob[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
-        // // StandAlone_nt.pair_rank_dz_PV_SV = SA_pair_rank_dz_PV_SV[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
-        // StandAlone_nt.pair_rank_dPhi_muons =
-        //     SA_pair_rank_dPhi_muons[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
-        // StandAlone_nt.pair_rank_dM_Z_Mmumu =
-        //     SA_pair_rank_dM_Z_Mmumu[{&tag - &tag_trkttrk[0], &tmp_probe - &muons->at(0)}];
-
+        
         StandAlone_t1->Fill();
-         tagHasProbe = true;
-      } // loop over probes
-    }
-  }
+
+        // Imposto la variabile a true per indicare che ho associato un probe al tag
+        tagHasProbe = true;
+     
+      
+    } //loop over probes
+  } //is save standalone
+} //loop tags
 }
+
 
 // ------------ method called once each job just before starting event loop
 // ------------

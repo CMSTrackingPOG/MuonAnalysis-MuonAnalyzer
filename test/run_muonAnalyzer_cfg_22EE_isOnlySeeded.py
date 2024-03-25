@@ -294,8 +294,8 @@ else:
 
 process.muon.isMC = options.isMC
 process.muon.includeJets = options.includeJets
-process.muon.isOnlySeeded = options.isOnlySeeded
 process.muon.era = options.era
+process.muon.isOnlySeeded=options.isOnlySeeded
 
 # Trigger matching
 muonSrc = "muons" if options.isFullAOD else "slimmedMuons"

@@ -43,7 +43,8 @@ def getOptions():
 
     parser.add_option('-w', '--workArea',
                       dest = 'workArea',
-                      default = 'FinalJetscrab_AOD_Run2023_pTFromTracker',
+                      default='CrabLogFiles_Run2023_AOD_AllTracks',
+                      # default = 'FinalJetscrab_AOD_Run2023_pTFromTracker',
                       help = "work area directory. Default: 'crab'.",
                       metavar = 'WAD')
 
@@ -91,7 +92,7 @@ def getOptions():
 
     parser.add_option('-k', '--storageSite',
                       dest = 'storageSite',
-                      default = 'CERN',
+                      default = 'CERNBOX',
                       help = "Storage site: 'CERN' (default), 'CERNBOX' (note: requires permission), 'FNAL'.",
                       metavar = 'STORAGE')
 
@@ -103,7 +104,7 @@ def getOptions():
 
     parser.add_option('-f', '--configFile',
                       dest = 'configFile',
-                      default = 'MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg_22.py',
+                      default = 'MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg_23.py',
                       help = "CMSSW cfg file to use (default 'run_muonAnalyzer_cfg.py' in /test).",
                       metavar = 'CFG')
 
@@ -230,7 +231,7 @@ def main():
         elif storageSite == 'CERNBOX':
             # See https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ#Can_I_send_CRAB_output_to_CERNBO
             config.Site.storageSite = 'T3_CH_CERNBOX'
-            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
+            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples_Run2023_AOD_AllTracks/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
         elif storageSite == 'BARI':
             config.Site.storageSite = 'T2_IT_Bari'
             config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
@@ -305,7 +306,7 @@ def main():
                         config.Data.lumiMask = LM_prefix + '16/13TeV/Legacy_2016/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt'
                 else:
                     if '2023' in era:
-                    config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions23/Cert_Collisions2023_366442_367758_Golden.json'
+                        config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json'
                     elif '2022' in era:
                         config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json'
                     elif '2018' in era:

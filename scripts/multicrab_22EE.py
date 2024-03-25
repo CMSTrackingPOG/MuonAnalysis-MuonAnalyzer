@@ -43,7 +43,8 @@ def getOptions():
 
     parser.add_option('-w', '--workArea',
                       dest = 'workArea',
-                      default = 'FinalJetscrab_AOD_Run2022EE_pTFromTracker',
+                      default='CrabLogFiles_Run2022EE_AOD_AllTracks',
+                      #default = 'FinalJetscrab_AOD_Run2022EE_pTFromTracker',
                       help = "work area directory. Default: 'crab'.",
                       metavar = 'WAD')
 
@@ -91,7 +92,7 @@ def getOptions():
 
     parser.add_option('-k', '--storageSite',
                       dest = 'storageSite',
-                      default = 'CERN',
+                      default = 'CERNBOX',
                       help = "Storage site: 'CERN' (default), 'CERNBOX' (note: requires permission), 'FNAL'.",
                       metavar = 'STORAGE')
 
@@ -128,7 +129,7 @@ def getOptions():
     parser.add_option('--unitsPerJobData',
                       dest = 'unitsPerJobData',
                       type = 'int',
-                      default = 100,
+                      default = 50,
                       help = "unitsPerJob option for data",
                       metavar = 'UNIT_PER_JOB_DATA')
 
@@ -230,7 +231,7 @@ def main():
         elif storageSite == 'CERNBOX':
             # See https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ#Can_I_send_CRAB_output_to_CERNBO
             config.Site.storageSite = 'T3_CH_CERNBOX'
-            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
+            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples_Run2022EE_AOD_AllTracks/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
         elif storageSite == 'BARI':
             config.Site.storageSite = 'T2_IT_Bari'
             config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
