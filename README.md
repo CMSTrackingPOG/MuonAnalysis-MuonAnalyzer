@@ -6,15 +6,18 @@ Requires CMSSW_12_4_12 or higher.
 
 ## Setup
 ```bash
-$ cmsrel CMSSW_12_4_12 
-$ cd CMSSW_12_4_12/src
-$ cmsenv
-$ git cms-init
-$ git clone https://github.com/matt2275/muonanalysis-muonanalyzer.git MuonAnalysis/MuonAnalyzer
-$ scram b -j 8
+cmsrel CMSSW_12_4_12 
+cd CMSSW_12_4_12/src
+cmsenv
+git cms-init
+git clone https://github.com/CMSTrackingPOG/MuonAnalysis-MuonAnalyzer.git MuonAnalysis/MuonAnalyzer
+cd MuonAnalysis/MuonAnalyzer
+git fetch --all
+git branch -a
+git checkout -b MuonAnalyzer-Run3TNP origin/MuonAnalyzer-Run3TNP
+git status
+scram b -j 8
 ```
-The Setup to run on 2023 data with CMSSW_13_0_3 requires a change in plugins/MuonGenAnalyzer.h, switching from #include "FWCore/Framework/interface/EDAnalyzer.h" to
-#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 
 ## Usage
 ```bash
