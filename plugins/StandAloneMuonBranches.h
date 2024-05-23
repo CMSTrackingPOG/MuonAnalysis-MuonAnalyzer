@@ -93,7 +93,7 @@ inline void StandAloneFillTagBranches(const MUON &muon,
   nt.tag_charge = muon.charge();
   nt.tag_pterr = muon.innerTrack()->ptError() / muon.innerTrack()->pt();
   nt.tag_dxy = muon.innerTrack()->dxy(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
-  nt.tag_dz = muon.innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
+  nt.tag_dz = muon.vz();//muon.innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
   nt.tag_isPF = muon.isPFMuon();
   nt.tag_isSA = muon.isStandAloneMuon();
   nt.tag_isTracker = muon.isTrackerMuon();
@@ -153,11 +153,25 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probe_trkPhi = match_track.phi();
       nt.probe_trkCharge = match_track.charge();
       nt.probe_trkDxy = match_track.dxy();
-      nt.probe_trkDz = match_track.dz();
+      nt.probe_trkDz = match_track.vz();
       nt.probe_trkHits = match_track.numberOfValidHits();
       nt.probe_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probe_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
       nt.probe_trk_SAmu_DeltaR = deltaR(match_track.eta(), match_track.phi(), SAmu.eta(), SAmu.phi());
+    }
+    else {
+      reco::Track match_track = match_tracks.second.at(0); // store the first track
+      nt.probe_isTrkMatch = false;
+      nt.probe_trkPt = -99;
+      nt.probe_trkEta = -99;
+      nt.probe_trkPhi = -99;
+      nt.probe_trkCharge = -99;
+      nt.probe_trkDxy = -99;
+      nt.probe_trkDz = -99;
+      nt.probe_trkHits = -99;
+      nt.probe_trkStripHits = -99;
+      nt.probe_trkPixelHits = -99;
+      nt.probe_trk_SAmu_DeltaR = -99;
     }
   }
   if (match_tracks.first.size() >= 2) {
@@ -174,6 +188,20 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probeSA_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probeSA_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
       nt.probeSA_trk_SAmu_DeltaR = deltaR(match_track.eta(), match_track.phi(), SAmu.eta(), SAmu.phi());
+    }
+    else{
+      reco::Track match_track = match_tracks.second.at(1);
+      nt.probeSA_isTrkMatch = false;
+      nt.probeSA_trkPt = -99;
+      nt.probeSA_trkEta = -99;
+      nt.probeSA_trkPhi = -99;
+      nt.probeSA_trkCharge = -99;
+      nt.probeSA_trkDxy = -99;
+      nt.probeSA_trkDz = -99;
+      nt.probeSA_trkHits = -99;
+      nt.probeSA_trkStripHits = -99;
+      nt.probeSA_trkPixelHits = -99;
+      nt.probeSA_trk_SAmu_DeltaR = -99;
     }
   }
   if (match_muon_idx > -1) {
@@ -218,7 +246,7 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probe_validFraction = mu.innerTrack()->validFraction();
       nt.probe_trackerLayers = mu.innerTrack()->hitPattern().trackerLayersWithMeasurement();
       nt.probe_pixelLayers = mu.innerTrack()->hitPattern().pixelLayersWithMeasurement();
-      nt.probe_pterr = mu.innerTrack()->ptError() / mu.innerTrack()->pt();
+      nt.probe_pterr =  mu.innerTrack()->pt();
       nt.probe_dxy = mu.innerTrack()->dxy(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
       nt.probe_dz = mu.innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
       nt.probe_pixelHits = mu.innerTrack()->hitPattern().numberOfValidPixelHits();
