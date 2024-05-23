@@ -16,6 +16,7 @@ git fetch --all
 git branch -a
 git checkout -b MuonAnalyzer-Run3TNP origin/MuonAnalyzer-Run3TNP
 git status
+cd ../..
 scram b -j 8
 ```
 
