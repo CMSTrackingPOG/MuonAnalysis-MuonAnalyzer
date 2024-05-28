@@ -1,5 +1,4 @@
-
-
+// Package:    MuonAnalyzer for Run 3
 //             version 2.0
 //
 /**\class
@@ -586,7 +585,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
   
   //const LumiInfo& lumi = iEvent.get(lumiToken_);
 
-  //  nt.istlumi = lumi.getTotalInstLumi();
+  //nt.istlumi = lumi.getTotalInstLumi();
   //std::cout << "Luminosity for " << iEvent.run() << " LS " << iEvent.luminosityBlock() << " is "
   //          << lumi.getTotalInstLumi() << std::endl;
   //edm::Handle<LumiSummary> l;
@@ -647,12 +646,7 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
 
  // if (debug_ > 0)
  //   std::cout << "New Evt " << nt.run << std::endl;
-if (debug_ > 0) {
-      std::cout << std::endl << "NUOVO EVENTO" << std::endl << std::endl;
-      std::cout << "New Evt " << nt.event << std::endl;
-      std::cout << "Run " << nt.run << std::endl;
-      //   std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
-  }
+
   reco::TrackBase::Point vertex_point;
   bool goodVtx = false;
   reco::Vertex const* pv;
@@ -855,8 +849,13 @@ if (debug_ > 0) {
   std::pair<std::vector<unsigned>, std::vector<unsigned>> trk_SAmuon_map;
   std::pair<std::vector<unsigned>, std::vector<unsigned>> associatedtrk_muon_map;
   
-
+   if (debug_ > 0) {
   
+      std::cout << std::endl << "NUOVO EVENTO" << std::endl << std::endl;
+      std::cout << "New Evt " << nt.event << std::endl;
+      std::cout << "Run " << nt.run << std::endl;
+      std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
+  }  
 
   // loop to compute numerator of tracking efficiency + fake rate
   for (const auto& mu : *muons) {
@@ -869,45 +868,38 @@ if (debug_ > 0) {
     const reco::Track SA_mu = *mu.standAloneMuon();
     float minDR = 1000;
     float minDR_assoc = 1000;
-    unsigned int idx_trk = std::numeric_limits<unsigned int>::max();  // Initialize idx_trk
-    unsigned int idx_associatedtrk = std::numeric_limits<unsigned int>::max();  // Initialize idx_associatedtrk
-    unsigned int idx_tag_temp = std::numeric_limits<unsigned int>::max();  // Initialize idx_tag_temp
-    unsigned int idx_tag_assoc = std::numeric_limits<unsigned int>::max();  // Initialize idx_tag_temp
-    std::vector<unsigned int> idx_tag_assocVec(tag_trkttrk.size(), std::numeric_limits<unsigned int>::max());
+    unsigned int idx_trk;
+    unsigned int idx_associatedtrk;
+    unsigned int idx_tag_assoc = 0;
+    unsigned int idx_tag_temp;
+
     bool hasAssociatedTrkMatch = false;
     const reco::Track trk_mu = *mu.standAloneMuon();
-    if (debug_ > 0)
-      std::cout << "Looking at probe with index: " << &mu - &muons->at(0) << std::endl;
+    bool isAssoc = false;
+    bool isZmass = false;
     
     for (const reco::Track& trk : *tracks) {
 
-      std::vector<bool> isAssocVec(tag_trkttrk.size(), false); // Initialize vector of booleans
-      std::vector<bool> isZmassVec(tag_trkttrk.size(), false); // Initialize vector of booleans
+      isZmass = false;
+      isAssoc = false;
 
-
-      if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.)){
-       std::cout << "Indice traccia " << &trk - &tracks->at(0) <<" Matching non passa per: trkPt,trkP,trkEta" << std::endl;
+      if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
           continue; // requirement on track
-      }
       
       for (const auto& tag : tag_trkttrk) {
-	if (fabs(tag.first.vz() - trk.vz()) < maxdz_trk_SAmu_ ) { isAssocVec[&tag - &tag_trkttrk[0]] = true; idx_tag_assocVec.push_back(&tag - &tag_trkttrk[0]); if (debug_ > 0) {std::cout<< "Indice traccia: " << &trk - &tracks->at(0) << " Indice tag associato: " << &tag - &tag_trkttrk[0] << std::endl;} }
+      if (fabs(tag.first.vz() - trk.vz()) < maxdz_trk_SAmu_ ) { isAssoc = true; idx_tag_assoc = &tag - &tag_trkttrk[0]; break; }
       } // check displacement of tag from tracks, we want to do the matching only with no displaced tracks
 
       for (const auto& tag : tag_trkttrk) {
       float mass_tagtrack = DimuonMass(tag.first.pt(), tag.first.eta(), tag.first.phi(), trk.pt(), trk.eta(), trk.phi());
       idx_tag_temp = &tag - &tag_trkttrk[0]; 
-      if (mass_tagtrack >= 40 && mass_tagtrack <= 200 && std::find(idx_tag_assocVec.begin(), idx_tag_assocVec.end(), idx_tag_temp) != idx_tag_assocVec.end()) { isZmassVec[&tag - &tag_trkttrk[0]] = true;  }
+      if (mass_tagtrack >= 40 && mass_tagtrack <= 200 && idx_tag_temp == idx_tag_assoc) { isZmass = true; break; }
       }
 
       bool charge_match = trk_mu.charge() == trk.charge();
       bool pt_match = fabs(trk_mu.pt() - trk.pt())/trk.pt() < maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0;
       bool DeltaR_match = deltaR(trk_mu.eta(), trk_mu.phi(), trk.eta(), trk.phi()) < maxdr_trk_SAmu_;
       bool DeltaEta_match = fabs(trk_mu.eta() - trk.eta()) < 0.3;
-      // Check association with any tag
-      bool isAssoc = std::any_of(isAssocVec.begin(), isAssocVec.end(), [](bool val) { return val; });
-      // Check association with any tag
-      bool isZmass = std::any_of(isZmassVec.begin(), isZmassVec.end(), [](bool val) { return val; });
     
       if(charge_match && pt_match && DeltaR_match && isAssoc && DeltaEta_match && !(isZmass)) {
       
@@ -926,67 +918,33 @@ if (debug_ > 0) {
          if(minDR_assoc < maxdr_trk_SAmu_ && hasAssociatedTrkMatch && (&trk == &tracks->back())) {
            associatedtrk_muon_map.first.push_back(idx_associatedtrk);         // stora indice traccia
            associatedtrk_muon_map.second.push_back(&mu - &muons->at(0)); // stora indice muone  
-           if (debug_ > 0) {
            std::cout << " Salvato un matching fake nella mappa! " << std::endl;
-           std::cout << " indice muone probe: " << &mu - &muons->at(0) << std::endl;
+           std::cout << " indice muone: " << &mu - &muons->at(0) << std::endl;
            std::cout << " indice traccia: " << idx_associatedtrk  << std::endl;
-           }
          }
        }
 
-      if (SA_mu.charge() != trk.charge()) {
-        std::cout << "Indice traccia " << &trk - &tracks->at(0) <<" Matching non passa per: Opposite charge probe-track" << std::endl;
-        continue;
-      }
+      if (SA_mu.charge() != trk.charge()) continue;
       bool isTrackeronlyseeded = trk.isAlgoInMask(trk.initialStep) || trk.isAlgoInMask(trk.lowPtTripletStep) || trk.isAlgoInMask(trk.pixelPairStep) || trk.isAlgoInMask(trk.detachedTripletStep) ||
       trk.isAlgoInMask(trk.mixedTripletStep) || trk.isAlgoInMask(trk.pixelLessStep) || trk.isAlgoInMask(trk.tobTecStep) || trk.isAlgoInMask(trk.jetCoreRegionalStep) || trk.isAlgoInMask(trk.lowPtQuadStep) || trk.isAlgoInMask(trk.highPtTripletStep) || trk.isAlgoInMask(trk.detachedQuadStep);
-      if(!isTrackeronlyseeded && isOnlySeeded_){
-        std::cout << "Indice traccia " << &trk - &tracks->at(0) <<" Matching non passa per: No OnlySeeded" << std::endl;
+      if(!isTrackeronlyseeded && isOnlySeeded_)
         continue;
-      }
-      if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.))
-	{if((mu.innerTrack()).isNonnull() && (mu.innerTrack()).isAvailable()){
-	    std::cout << "Indice traccia " << &trk - &tracks->at(0) <<" Matching non passa per: trkPt,trkP,trkEta : YesinnerTrack" << std::endl;
-	  }
-	  else{std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: trkPt,trkP,trkEta : NoinnerTrack" << std::endl;}
-	  continue;}
+      if((trk.pt() <= minpt_trkSA_) && (abs(trk.eta()) <= 1. || trk.p() <= 2.)) 
+      continue;
       if(!isAssoc)
-	{if((mu.innerTrack()).isNonnull() && (mu.innerTrack()).isAvailable()){
-	  std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: isAssoc : YesinnerTrack" << std::endl;
-	  }
-	  else{std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: isAssoc : NoinnerTrack" << std::endl;}
-	  continue;}
+        continue;
       if(fabs(SA_mu.eta() - trk.eta()) > 0.3)
-	{if((mu.innerTrack()).isNonnull() && (mu.innerTrack()).isAvailable()){
-	  std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: deltaEta : YesinnerTrack" << std::endl;
-	  }
-	  else{std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: deltaEta : NoinnerTrack" << std::endl;}
-	  continue;}
+        continue;
       if(fabs(SA_mu.pt() - trk.pt()) / trk.pt() > maxpt_relative_dif_trk_SAmu_ && maxpt_relative_dif_trk_SAmu_ > 0)
-	{if((mu.innerTrack()).isNonnull() && (mu.innerTrack()).isAvailable()){
-	  std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: ptRel : YesinnerTrack" << std::endl;
-	  }
-	  else{
-	    std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Matching non passa per: ptRel : NoinnerTrack" << std::endl;
-	  }
-	  continue;
-	}
+        continue;
       float DR = deltaR(SA_mu.eta(), SA_mu.phi(), trk.eta(), trk.phi());
       std::cout << "   DR " << DR << "  " << SA_mu.eta() << "  " << SA_mu.phi() << "  " << trk.eta() << "  " << trk.phi() << std::endl;
       
       
-      if(minDR < DR){
-        std::cout << "Indice traccia " << &trk - &tracks->at(0) <<" Matching non passa per: deltaR > minDR, minDR: "<< minDR << std::endl;
+      if(minDR < DR)
         continue;
-      }
       minDR = DR;
       idx_trk = &trk - &tracks->at(0);
-      if((mu.innerTrack()).isNonnull() && (mu.innerTrack()).isAvailable()){
-	std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Traccia ha passato tutti gli step : YesinnerTrack" << std::endl;
-      }
-      else{
-	std::cout << "Indice traccia " << &trk - &tracks->at(0) << " Traccia ha passato tutti gli step : NoinnerTrack" << std::endl;
-      }
     }
    
 
@@ -996,7 +954,7 @@ if (debug_ > 0) {
     trk_SAmuon_map.second.push_back(&mu - &muons->at(0));             //stora indice muone
     //std::cout<< "primo step" << std::endl;
       std::cout << " Salvato un matching nella mappa! " << std::endl;
-      std::cout << " indice muone probe: " << &mu - &muons->at(0) << std::endl;
+      std::cout << " indice muone: " << &mu - &muons->at(0) << std::endl;
       std::cout << " indice traccia: " <<  idx_trk << std::endl;
 
   }
@@ -1526,19 +1484,19 @@ if (debug_ > 0) {
   // loop over tags
 
  
-   // if (debug_ > 0) {
-   //  std::cout << std::endl << "NUOVO EVENTO" << std::endl << std::endl;
-   // std::cout << "New Evt " << nt.event << std::endl;
-   //  std::cout << "Run " << nt.run << std::endl;
-   // std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
-   //}  
+// if (debug_ > 0) {
+//      std::cout << std::endl << "NUOVO EVENTO" << std::endl << std::endl;
+//      std::cout << "New Evt " << nt.event << std::endl;
+//      std::cout << "Run " << nt.run << std::endl;
+//      std::cout << "Totale dei tag muons: " << tag_trkttrk.size() << std::endl;
+//  }  
 
   for (auto& tag : tag_trkttrk) {
 
     bool tagHasProbe = false;
 
     if (debug_ > 0) {
-      std::cout << "Sto analizzando il tag di indice " << (&tag - &tag_trkttrk[0]) << std::endl;
+      std::cout << "Sto analizzando il tag numero " << (&tag - &tag_trkttrk[0])+1 << std::endl;
       std::cout << "Tag: pt " << tag.first.pt() << " eta " << tag.first.eta() << " phi " << tag.first.phi()
                 << std::endl;
     }
@@ -1643,9 +1601,7 @@ if (debug_ > 0) {
 
        
         if (mass < pairMassMin_ || mass > pairMassMax_)
-        { std::cout << "massa al di fuori del range" << std::endl;
           continue;
-        }
         
         std::cout << "   Ho appena calcolato la massa: " << mass << std::endl;
 
@@ -1725,8 +1681,8 @@ if (debug_ > 0) {
         int assoc_trk_idx = -99;
         int match_muon_idx = &tmp_probe - &muons->at(0);
         std::pair<std::vector<bool>, std::vector<reco::Track>> match_tracks;
-	match_tracks.first.clear();
-	match_tracks.second.clear();
+        match_tracks.first.clear();
+        match_tracks.second.clear();
         if (it != trk_SAmuon_map.second.end()) {           
           unsigned idx = std::distance(trk_SAmuon_map.second.begin(), it);
           match_trk_idx = trk_SAmuon_map.first[idx];
