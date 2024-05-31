@@ -93,7 +93,7 @@ inline void StandAloneFillTagBranches(const MUON &muon,
   nt.tag_charge = muon.charge();
   nt.tag_pterr = muon.innerTrack()->ptError() / muon.innerTrack()->pt();
   nt.tag_dxy = muon.innerTrack()->dxy(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
-  nt.tag_dz = muon.innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
+  nt.tag_dz = muon.vz();//innerTrack()->dz(reco::TrackBase::Point(nt.pv_x, nt.pv_y, nt.pv_z));
   nt.tag_isPF = muon.isPFMuon();
   nt.tag_isSA = muon.isStandAloneMuon();
   nt.tag_isTracker = muon.isTrackerMuon();

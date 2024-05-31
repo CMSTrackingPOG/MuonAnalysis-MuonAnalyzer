@@ -1486,6 +1486,8 @@ void StandAloneMuonFullAODAnalyzer::analyze(const edm::Event& iEvent, const edm:
         int assoc_trk_idx = -99;
         int match_muon_idx = 0;
         std::pair<std::vector<bool>, std::vector<reco::Track>> match_tracks;
+        match_tracks.first.clear();
+        match_tracks.second.clear();
         if (it != trk_SAmuon_map.second.end()) {           
           unsigned idx = std::distance(trk_SAmuon_map.second.begin(), it);
           match_trk_idx = trk_SAmuon_map.first[idx];

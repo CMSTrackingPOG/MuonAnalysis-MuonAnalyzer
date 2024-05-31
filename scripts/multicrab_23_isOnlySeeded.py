@@ -92,7 +92,7 @@ def getOptions():
 
     parser.add_option('-k', '--storageSite',
                       dest = 'storageSite',
-                      default = 'CERNBOX',
+                      default = 'CERN',
                       help = "Storage site: 'CERN' (default), 'CERNBOX' (note: requires permission), 'FNAL'.",
                       metavar = 'STORAGE')
 
@@ -116,7 +116,7 @@ def getOptions():
 
     parser.add_option('-b', '--eraDB',
                       dest = 'eraDB',
-                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2023/database_previous_mc.json',
+                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2023/database.json',
                       help = "Database file. default: data/samples/muon/Z/Run2018_UL/database.json",
                       metavar = 'ERA_DB_FILE')
 
