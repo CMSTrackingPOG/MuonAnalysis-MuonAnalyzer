@@ -344,23 +344,23 @@ from MuonAnalysis.MuonAnalyzer.selectorInfo_cff import getSelectorNamesAndBits
 selectorNames, selectorBits = getSelectorNamesAndBits(options.era, options.isFullAOD)
 process.muon.probeSelectorNames = cms.vstring(selectorNames)
 process.muon.probeSelectorBits = cms.vuint32(selectorBits)
-if not options.isMC:
-    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
-                                      lumiFile = cms.string("lumiData.csv"),
-                                      throwIfNotFound = cms.bool(False),
-                                      doBunchByBunch = cms.bool(False)
-                                      )
-else:
-    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
-                                      lumiFile = cms.string("lumiMC.csv"),
-                                      throwIfNotFound = cms.bool(False),
-                                      doBunchByBunch = cms.bool(False)
-                                      )
+#if not options.isMC:
+#    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
+#                                      lumiFile = cms.string("lumiData.csv"),
+#                                      throwIfNotFound = cms.bool(False),
+#                                      doBunchByBunch = cms.bool(False)
+#                                      )
+#else:
+#    process.LumiInfo = cms.EDProducer('LumiProducerFromBrilcalc',
+#                                      lumiFile = cms.string("lumiMC.csv"),
+#                                      throwIfNotFound = cms.bool(False),
+#                                      doBunchByBunch = cms.bool(False)
+#                                      )
 if options.isFullAOD:
     if options.includeJets:
         if not options.isMC:
 	        process.analysis_step = cms.Path(
-                process.LumiInfo +
+#                process.LumiInfo +
                 process.primaryVertexAssociation +
                 process.offlineSlimmedPrimaryVertices +
                 process.packedCandsForMuons +
@@ -371,7 +371,7 @@ if options.isFullAOD:
             )
         else:
             process.analysis_step = cms.Path(
-                process.LumiInfo +
+#                process.LumiInfo +
                 process.primaryVertexAssociation +
                 process.offlineSlimmedPrimaryVertices +
                 process.packedCandsForMuons +
@@ -382,7 +382,7 @@ if options.isFullAOD:
 	    )
     else:
         process.analysis_step = cms.Path(
-            process.LumiInfo +
+#            process.LumiInfo +
             process.primaryVertexAssociation +
             process.offlineSlimmedPrimaryVertices +
             process.packedCandsForMuons +
@@ -394,7 +394,7 @@ else:
     if options.includeJets:
         if not options.isMC:
             process.analysis_step = cms.Path(
-                process.LumiInfo+
+#                process.LumiInfo+
                 process.muonL1Info +
                 process.muonL1InfoByQ +
                 process.ak4PFCHSL1FastL2L3ResidualCorrectorChain +
@@ -402,7 +402,7 @@ else:
             )
         else:
             process.analysis_step = cms.Path(
-                process.LumiInfo+
+ #               process.LumiInfo+
                 process.muonL1Info +
                 process.muonL1InfoByQ +
                 process.ak4PFCHSL1FastL2L3CorrectorChain +
@@ -410,7 +410,7 @@ else:
             )
     else:
         process.analysis_step = cms.Path(
-            process.LumiInfo+
+#            process.LumiInfo+
             process.muonL1Info +
             process.muonL1InfoByQ +
             process.muSequence

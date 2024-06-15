@@ -92,6 +92,7 @@ if len(options.inputFiles) == 0:
                 options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/004b3105-d392-4fdb-b0a5-b355c71db0ac.root')
                 options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/0037e224-e1e0-48a5-b307-0c27bbe20aa7.root')
                 options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/005f14db-fe48-40df-be32-107b56f43bc4.root')
+                options.inputFiles.append('/store/mc/Run3Summer23BPixDRPremix/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/AODSIM/130X_mcRun3_2023_realistic_postBPix_v2-v3/50000/0bbf16f4-31ca-43e9-abc9-9fc58abf8c3d.root')
                 #options.inputFiles.append('/store/mc/Run3Summer22EEDRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/2810000/002cda4f-e18b-4323-981b-9e06c13e0d67.root')
                 #options.inputFiles.append('/store/mc/Run3Summer22EEDRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/forPOG_124X_mcRun3_2022_realistic_postEE_v1-v3/2810000/00322bd6-3a2c-4583-bc4f-5f9a51098644.root')
                 #options.inputFiles.append('/store/mc/Run3Winter22DRPremix/DYJetsToLL_M-50_TuneCP5_13p6TeV-madgraphMLM-pythia8/AODSIM/122X_mcRun3_2021_realistic_v9_ext2-v2/40000/0027e0ac-873f-4f49-884b-4c5b67c85724.root')
@@ -227,7 +228,7 @@ process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag,globaltag, '')
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(15000))
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(options.inputFiles),
