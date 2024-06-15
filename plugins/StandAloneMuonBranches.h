@@ -183,7 +183,7 @@ inline void StandAloneFillProbeBranches(const MUON &SAmu,
       nt.probeSA_trkPhi = match_track.phi();
       nt.probeSA_trkCharge = match_track.charge();
       nt.probeSA_trkDxy = match_track.dxy();
-      nt.probeSA_trkDz = match_track.vz();
+      nt.probeSA_trkDz = match_track.dz();
       nt.probeSA_trkHits = match_track.numberOfValidHits();
       nt.probeSA_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probeSA_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
