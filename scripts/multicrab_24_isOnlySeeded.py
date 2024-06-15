@@ -43,8 +43,8 @@ def getOptions():
 
     parser.add_option('-w', '--workArea',
                       dest = 'workArea',
-                      default='CrabLogFiles_Run2023_AOD_AllTracks',
-                      # default = 'FinalJetscrab_AOD_Run2023_pTFromTracker',
+                      default = 'CrabLogFiles_Run2024_AOD_isOnlySeeded',
+                      # default = 'FinalJetscrab_AOD_Run2024_pTFromTracker_isOnlySeeded',
                       help = "work area directory. Default: 'crab'.",
                       metavar = 'WAD')
 
@@ -68,8 +68,8 @@ def getOptions():
 
     parser.add_option('-e', '--era',
                       dest = 'era',
-                      default = 'Run2023',
-                      help = "Era to run samples over. Options are 'Run2023/ Run2022'/'Run2018'/'Run2017'/'Run2016'/'Run2018_UL'/'Run2017_UL'/'Run2016_UL'/'Run2016_UL_HIPM'. Default is 'Run2018'.",
+                      default = 'Run2024',
+                      help = "Era to run samples over. Options are 'Run2024/ Run2023/ Run2022'/'Run2018'/'Run2017'/'Run2016'/'Run2018_UL'/'Run2017_UL'/'Run2016_UL'/'Run2016_UL_HIPM'. Default is 'Run2018'.",
                       metavar = 'ERA')
 
     parser.add_option('-s', '--subEra',
@@ -104,7 +104,7 @@ def getOptions():
 
     parser.add_option('-f', '--configFile',
                       dest = 'configFile',
-                      default = 'MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg_23.py',
+                      default = 'MuonAnalysis/MuonAnalyzer/test/run_muonAnalyzer_cfg_24_isOnlySeeded.py',
                       help = "CMSSW cfg file to use (default 'run_muonAnalyzer_cfg.py' in /test).",
                       metavar = 'CFG')
 
@@ -116,7 +116,7 @@ def getOptions():
 
     parser.add_option('-b', '--eraDB',
                       dest = 'eraDB',
-                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2023/database.json',
+                      default = 'MuonAnalysis/MuonAnalyzer/data/samples/muon/Z/Run2024/database.json',
                       help = "Database file. default: data/samples/muon/Z/Run2018_UL/database.json",
                       metavar = 'ERA_DB_FILE')
 
@@ -129,7 +129,7 @@ def getOptions():
     parser.add_option('--unitsPerJobData',
                       dest = 'unitsPerJobData',
                       type = 'int',
-                      default = 100,
+                      default = 200,
                       help = "unitsPerJob option for data",
                       metavar = 'UNIT_PER_JOB_DATA')
 
@@ -228,11 +228,11 @@ def main():
         elif storageSite == 'CERN': # default option
             # Requires write access to Muon POG EOS space at CERN
             config.Site.storageSite = 'T2_CH_CERN'
-            config.Data.outLFNDirBase = '/store/group/phys_tracking/%s/FinalJetscrab_AOD_Run2023_pTFromTracker/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
+            config.Data.outLFNDirBase = '/store/group/phys_tracking/%s/FinalJetscrab_AOD_Run2024_pTFromTracker_isOnlySeeded/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
         elif storageSite == 'CERNBOX':
             # See https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ#Can_I_send_CRAB_output_to_CERNBO
             config.Site.storageSite = 'T3_CH_CERNBOX'
-            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples_Run2023_AOD_AllTracks/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
+            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples_Run2024_AOD_isOnlySeeded/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
         elif storageSite == 'BARI':
             config.Site.storageSite = 'T2_IT_Bari'
             config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
@@ -306,7 +306,9 @@ def main():
                     elif '2016' in era:
                         config.Data.lumiMask = LM_prefix + '16/13TeV/Legacy_2016/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt'
                 else:
-                    if '2023' in era:
+                    if '2024' in era:
+                        config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions24/Cert_Collisions2024_378981_381417_Golden.json'
+                    elif '2023' in era:
                         config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json'
                     elif '2022' in era:
                         config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json'
@@ -331,7 +333,7 @@ def main():
                     'resonance={}'.format(resonance),
                     'isFullAOD={}'.format(isFullAOD),
                     'isMC={}'.format(not isData),
-                    'isOnlySeeded={}'.format(False),
+                    'isOnlySeeded={}'.format(True),
                     'globalTag={}'.format(globalTag),
                     'numThreads={}'.format(numThreads),
                     'era={}'.format(era),

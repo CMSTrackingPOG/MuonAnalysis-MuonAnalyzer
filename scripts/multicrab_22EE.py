@@ -215,6 +215,7 @@ def main():
         config.JobType.psetName = configFile
         config.JobType.numCores = numThreads
         config.JobType.allowUndistributedCMSSW = True
+        config.JobType.maxJobRuntimeMin = 2880  # Set the wall clock time limit (e.g., 48 hours = 2880 minutes)
         #config.JobType.maxMemoryMB = 4000
         #config.JobType.inputFiles = ['MuonAnalysis/MuonAnalyzer/test/lumiData.csv', 'MuonAnalysis/MuonAnalyzer/test/lumiMC.csv']
         config.Data.publication = False
