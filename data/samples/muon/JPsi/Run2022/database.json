@@ -1,0 +1,29 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2022",
+    "suberas": {
+        "MINIAOD": {
+            "Jpsi": {
+                "dataset": "/JpsiTo2Mu_JpsiPt8_TuneCP5_13p6TeV_pythia8/Run3Summer22MiniAODv3-MUO_POG_124X_mcRun3_2022_realistic_v12-v2/MINIAODSIM",
+                "globalTag": "124X_mcRun3_2022_realistic_v12"
+            },
+	    "Run2022B" : {
+                "dataset": "/SingleMuon/Run2022B-22Sep2023-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_v15"
+            },
+            "Run2022C1": {
+                "dataset": "/SingleMuon/Run2022C-22Sep2023-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_v15"
+            },
+            "Run2022C2": {
+                "dataset": "/Muon/Run2022C-22Sep2023-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_v15"
+            },
+            "Run2022D": {
+                "dataset": "/Muon/Run2022D-22Sep2023-v1/MINIAOD",
+                "globalTag": "124X_dataRun3_v15"
+            }
+        }
+    }
+}

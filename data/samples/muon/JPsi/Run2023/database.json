@@ -1,0 +1,123 @@
+{
+    "particle": "muon",
+    "resonance": "JPsi",
+    "era": "Run2023",
+    "suberas": {
+        "MINIAOD": {
+            "Run2023B_M0": {
+                "dataset": "/Muon0/Run2023B-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023B_M1": {
+                "dataset": "/Muon1/Run2023B-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v2/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v3/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v4/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v2/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v3/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v4/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v1/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D2_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v2/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D2_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v2/MINIAOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            }
+        },
+        "AOD": {
+            "Run2023B_M0": {
+                "dataset": "/Muon0/Run2023B-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023B_M1": {
+                "dataset": "/Muon1/Run2023B-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v3/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v4/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v3/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v4/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D2_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D2_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            }
+        }
+    }
+}
