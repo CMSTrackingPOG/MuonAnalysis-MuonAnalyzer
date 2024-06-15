@@ -12,6 +12,7 @@ void NtupleContent::CreateBranches(const std::vector<std::string> &HLTs,
   t1->Branch("run", &run);
   t1->Branch("event", &event);
   t1->Branch("ls", &ls);
+  t1->Branch("istlumi", &istlumi);
   t1->Branch("fromFullAOD", &fromFullAOD);
   t1->Branch("genWeight", &genWeight);
   t1->Branch("BSpot_x", &BSpot_x);
@@ -88,10 +89,6 @@ void NtupleContent::CreateBranches(const std::vector<std::string> &HLTs,
   t1->Branch("tag_minDR", &tag_minDR);
   t1->Branch("tag_ptRel_minDR", &tag_ptRel_minDR);
   t1->Branch("tag_iso03_sumPt", &tag_iso03_sumPt);
-  t1->Branch("tag_pfIso03_charged", &tag_pfIso03_charged);
-  t1->Branch("tag_pfIso03_neutral", &tag_pfIso03_neutral);
-  t1->Branch("tag_pfIso03_photon", &tag_pfIso03_photon);
-  t1->Branch("tag_pfIso03_sumPU", &tag_pfIso03_sumPU);
   t1->Branch("tag_pfIso04_charged", &tag_pfIso04_charged);
   t1->Branch("tag_pfIso04_neutral", &tag_pfIso04_neutral);
   t1->Branch("tag_pfIso04_photon", &tag_pfIso04_photon);
@@ -146,10 +143,6 @@ void NtupleContent::CreateBranches(const std::vector<std::string> &HLTs,
   t1->Branch("probe_minDR", &probe_minDR);
   t1->Branch("probe_ptRel_minDR", &probe_ptRel_minDR);
   t1->Branch("probe_iso03_sumPt", &probe_iso03_sumPt);
-  t1->Branch("probe_pfIso03_charged", &probe_pfIso03_charged);
-  t1->Branch("probe_pfIso03_neutral", &probe_pfIso03_neutral);
-  t1->Branch("probe_pfIso03_photon", &probe_pfIso03_photon);
-  t1->Branch("probe_pfIso03_sumPU", &probe_pfIso03_sumPU);
   t1->Branch("probe_pfIso04_charged", &probe_pfIso04_charged);
   t1->Branch("probe_pfIso04_neutral", &probe_pfIso04_neutral);
   t1->Branch("probe_pfIso04_photon", &probe_pfIso04_photon);
@@ -314,6 +307,7 @@ void NtupleContent::ClearBranches() {
   run = -1;
   event = -1;
   ls = -1;
+  istlumi = -999.;
   genWeight = -99;
   BSpot_x = -99;
   BSpot_y = -99;
@@ -419,10 +413,6 @@ void NtupleContent::ClearBranches() {
   tag_minDR = 0.;
   tag_ptRel_minDR = 0.;
   tag_iso03_sumPt = -99;
-  tag_pfIso03_charged = -99;
-  tag_pfIso03_neutral = -99;
-  tag_pfIso03_photon = -99;
-  tag_pfIso03_sumPU = -99;
   tag_pfIso04_charged = -99;
   tag_pfIso04_neutral = -99;
   tag_pfIso04_photon = -99;
@@ -477,10 +467,6 @@ void NtupleContent::ClearBranches() {
   probe_minDR = 0.;
   probe_ptRel_minDR = 0.;
   probe_iso03_sumPt = -99;
-  probe_pfIso03_charged = -99;
-  probe_pfIso03_neutral = -99;
-  probe_pfIso03_photon = -99;
-  probe_pfIso03_sumPU = -99;
   probe_pfIso04_charged = -99;
   probe_pfIso04_neutral = -99;
   probe_pfIso04_photon = -99;

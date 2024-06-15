@@ -25,6 +25,7 @@ public:
   int run;
   int event;
   int ls;
+  float istlumi;
   bool fromFullAOD;
 
   float genWeight;
@@ -158,10 +159,6 @@ public:
   float tag_minDR;
   float tag_ptRel_minDR;
   float tag_iso03_sumPt;
-  float tag_pfIso03_charged;
-  float tag_pfIso03_neutral;
-  float tag_pfIso03_photon;
-  float tag_pfIso03_sumPU;
   float tag_pfIso04_charged;
   float tag_pfIso04_neutral;
   float tag_pfIso04_photon;
@@ -217,10 +214,6 @@ public:
   float probe_minDR;
   float probe_ptRel_minDR;
   float probe_iso03_sumPt;
-  float probe_pfIso03_charged;
-  float probe_pfIso03_neutral;
-  float probe_pfIso03_photon;
-  float probe_pfIso03_sumPU;
   float probe_pfIso04_charged;
   float probe_pfIso04_neutral;
   float probe_pfIso04_photon;

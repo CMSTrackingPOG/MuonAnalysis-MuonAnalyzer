@@ -260,29 +260,14 @@ hltInfoAll = {
     },
     'Run2018': {
       'triggerPaths': [
-        "HLT_Dimuon0_Jpsi3p5_Muon2_v", 
-        "HLT_DoubleMu4_JpsiTrk_Displaced_v", 
         "HLT_IsoMu24_v",
-        "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v",
+        "HLT_IsoMu27_v",
         "HLT_Mu50_v",
-        "HLT_OldMu100_v",
-        "HLT_TkMu100_v",
-        "HLT_Mu17_TrkIsoVVL_v",
-        "HLT_Mu17_v",
-        "HLT_Mu8_v",
-        "HLT_Mu8_TrkIsoVVL_v",
-        "HLT_Mu12_v",
-        "HLT_Mu15_v",
-        "HLT_Mu19_v",
-        "HLT_Mu20_v",
-
-        # dSA (AOD only)
-        "HLT_L2Mu23NoVtx_2Cha_v",
-        "HLT_L2Mu23NoVtx_2Cha_CosmicSeed_v",
-        "HLT_DoubleL2Mu23NoVtx_2Cha_v",
-        "HLT_DoubleL2Mu23NoVtx_2Cha_CosmicSeed_v",
+        "HLT_IsoMu20_v"
       ],
       'tagFilters': [
+        'HLT_IsoMu27_v',
+        'HLT_IsoMu20_v',
         'HLT_Dimuon0_Jpsi3p5_Muon2_v',
         'hltTripleMuonL2PreFiltered0', 
         'hltTripleMuL3PreFiltered222', 
@@ -394,8 +379,8 @@ hltInfoAll = {
         "HLT_IsoMu24_v",
         "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v",
         "HLT_Mu50_v",
-        "HLT_CascadeMu100_v",
-        "HLT_HighPtTkMu100_v",
+        "HLT_OldMu100_v",
+        "HLT_TkMu100_v",
         "HLT_Mu17_TrkIsoVVL_v",
         "HLT_Mu17_v",
         "HLT_Mu8_v",
@@ -432,27 +417,27 @@ hltInfoAll = {
         'hltL3fL1DoubleMu155fFiltered17',
         'hltDiMuon178RelTrkIsoFiltered0p4',
         'hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2',
-        'hltDiMuon178RelTrkIsoVVLFiltered',
-        'hltDiMuon178RelTrkIsoVVLFilteredDzFiltered0p2',
+        'hltDiMuon178RelTrkIsoFiltered',
+        'hltDiMuon178RelTrkIsoFilteredDzFiltered0p2',
         'hltDiMuon178Mass3p8Filtered',
         'HLT_Mu50_v',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q',
-        'HLT_CascadeMu100_v',
+        'HLT_OldMu100_v',
         'hltL2fOldL1sMu22or25L1f0L2Filtered10Q',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q',
-        'HLT_HighPtTkMu100_v',
+        'HLT_TkMu100_v',
         'hltL3fL1sMu25f0TkFiltered100Q',
         'HLT_Mu17_TrkIsoVVL_v',
         'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4',
-        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoVVLFiltered',
+        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered',
         'HLT_Mu17_v',
         # 'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         "HLT_Mu8_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8",
         "HLT_Mu8_TrkIsoVVL_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered0p4",
-        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoVVLFiltered",
+        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered",
         "HLT_Mu12_v",
         "hltL3fL1sMu15DQlqL1f0L2f10L3Filtered12",
         "HLT_Mu15_v",
@@ -490,27 +475,27 @@ hltInfoAll = {
         'hltL3fL1DoubleMu155fFiltered17',
         'hltDiMuon178RelTrkIsoFiltered0p4',
         'hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2',
-        'hltDiMuon178RelTrkIsoVVLFiltered',
-        'hltDiMuon178RelTrkIsoVVLFilteredDzFiltered0p2',
+        'hltDiMuon178RelTrkIsoFiltered',
+        'hltDiMuon178RelTrkIsoFilteredDzFiltered0p2',
         'hltDiMuon178Mass3p8Filtered',
         'HLT_Mu50_v',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q',
-        'HLT_CascadeMu100_v',
+        'HLT_OldMu100_v',
         'hltL2fOldL1sMu22or25L1f0L2Filtered10Q',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q',
-        'HLT_HighPtTkMu100_v',
+        'HLT_TkMu100_v',
         'hltL3fL1sMu25f0TkFiltered100Q',
         'HLT_Mu17_TrkIsoVVL_v',
         'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4',
-        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoVVLFiltered',
+        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered',
         'HLT_Mu17_v',
         # 'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         "HLT_Mu8_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8",
         "HLT_Mu8_TrkIsoVVL_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered0p4",
-        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoVVLFiltered",
+        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered",
         "HLT_Mu12_v",
         "hltL3fL1sMu15DQlqL1f0L2f10L3Filtered12",
         "HLT_Mu15_v",
@@ -530,15 +515,15 @@ hltInfoAll = {
     }
   },
   'JPsi': {
-    'Run2022': {
+        'Run2022': {
       'triggerPaths': [
         "HLT_Dimuon0_Jpsi3p5_Muon2_v", 
         "HLT_DoubleMu4_JpsiTrk_Displaced_v", 
         "HLT_IsoMu24_v",
         "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v",
         "HLT_Mu50_v",
-        "HLT_CascadeMu100_v",
-        "HLT_HighPtTkMu100_v",
+        "HLT_OldMu100_v",
+        "HLT_TkMu100_v",
         "HLT_Mu17_TrkIsoVVL_v",
         "HLT_Mu17_v",
         "HLT_Mu8_v",
@@ -575,27 +560,27 @@ hltInfoAll = {
         'hltL3fL1DoubleMu155fFiltered17',
         'hltDiMuon178RelTrkIsoFiltered0p4',
         'hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2',
-        'hltDiMuon178RelTrkIsoVVLFiltered',
-        'hltDiMuon178RelTrkIsoVVLFilteredDzFiltered0p2',
+        'hltDiMuon178RelTrkIsoFiltered',
+        'hltDiMuon178RelTrkIsoFilteredDzFiltered0p2',
         'hltDiMuon178Mass3p8Filtered',
         'HLT_Mu50_v',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q',
-        'HLT_CascadeMu100_v',
+        'HLT_OldMu100_v',
         'hltL2fOldL1sMu22or25L1f0L2Filtered10Q',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q',
-        'HLT_HighPtTkMu100_v',
+        'HLT_TkMu100_v',
         'hltL3fL1sMu25f0TkFiltered100Q',
         'HLT_Mu17_TrkIsoVVL_v',
         'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4',
-        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoVVLFiltered',
+        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered',
         'HLT_Mu17_v',
         # 'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         "HLT_Mu8_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8",
         "HLT_Mu8_TrkIsoVVL_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered0p4",
-        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoVVLFiltered",
+        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered",
         "HLT_Mu12_v",
         "hltL3fL1sMu15DQlqL1f0L2f10L3Filtered12",
         "HLT_Mu15_v",
@@ -633,27 +618,27 @@ hltInfoAll = {
         'hltL3fL1DoubleMu155fFiltered17',
         'hltDiMuon178RelTrkIsoFiltered0p4',
         'hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2',
-        'hltDiMuon178RelTrkIsoVVLFiltered',
-        'hltDiMuon178RelTrkIsoVVLFilteredDzFiltered0p2',
+        'hltDiMuon178RelTrkIsoFiltered',
+        'hltDiMuon178RelTrkIsoFilteredDzFiltered0p2',
         'hltDiMuon178Mass3p8Filtered',
         'HLT_Mu50_v',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q',
-        'HLT_CascadeMu100_v',
+        'HLT_OldMu100_v',
         'hltL2fOldL1sMu22or25L1f0L2Filtered10Q',
         'hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q',
-        'HLT_HighPtTkMu100_v',
+        'HLT_TkMu100_v',
         'hltL3fL1sMu25f0TkFiltered100Q',
         'HLT_Mu17_TrkIsoVVL_v',
         'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4',
-        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoVVLFiltered',
+        'hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered',
         'HLT_Mu17_v',
         # 'hltL3fL1sMu15DQlqL1f0L2f10L3Filtered17',
         "HLT_Mu8_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8",
         "HLT_Mu8_TrkIsoVVL_v",
         "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered0p4",
-        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoVVLFiltered",
+        "hltL3fL1sMu5L1f0L2f5L3Filtered8TkIsoFiltered",
         "HLT_Mu12_v",
         "hltL3fL1sMu15DQlqL1f0L2f10L3Filtered12",
         "HLT_Mu15_v",
@@ -1116,9 +1101,9 @@ def check_size(info, max_size = 100, keys = []):
     else:
       if len(v) > max_size:
         loc = '|'.join(keys)
-        print ("WARNING either put less than {} paths/filters in hltInfoAll|{}|{}, or increase the quota from NtupleContent.h/.cc".format(max_size+1, loc, k))
+        #print "WARNING either put less than {} paths/filters in hltInfoAll|{}|{}, or increase the quota from NtupleContent.h/.cc".format(max_size+1, loc, k)
         exit()
-    if len(keys) > 0 and k == list(info.keys())[-1]:
+    if len(keys) > 0 and k == info.keys()[-1]:
       keys.pop()
 
 def getShortEraForHLT(era):
@@ -1129,7 +1114,7 @@ def getShortEraForHLT(era):
   elif 'Run2018' in era:
     return 'Run2018'
   elif 'Run2022' in era:
-    return 'Run2022'    
+    return 'Run2022'
   else:  # any other era will use the trigger list for Run2018
     return 'Run2022'
 
@@ -1151,6 +1136,6 @@ def selectTriggers(trgList, keepPaths = True, keepFilters = True, excludeDSA = F
   return out
 
 def getHLTInfo(resonance, era):
-  check_size(hltInfoAll)
+  #check_size(hltInfoAll)
   return hltInfoAll[resonance][getShortEraForHLT(era)]
 

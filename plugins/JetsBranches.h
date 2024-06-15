@@ -15,6 +15,7 @@
 #include <type_traits>
 #include "TLorentzVector.h"
 #include "NtupleContent.h"
+#include "StandAloneNtupleContent.h"
 #include "helper.h"
 
 template <typename JET, typename MU>
@@ -29,7 +30,7 @@ inline bool CrossClean(const JET &jet, std::vector<MU> &muForJetCleaning) {
 }
 
 template <typename JET>
-inline void FillJetBranches(const JET &jet, const JET &corrJet, NtupleContent &nt, std::string era) {
+inline void FillJetBranches(const JET &jet, const JET &corrJet, StandAloneNtupleContent &nt, std::string era) {
   // Jet ID
   bool jetTightID = true, jetTightLepVeto = true;
   if (era.find("2016") != std::string::npos) {
@@ -122,7 +123,7 @@ inline void FillJetBranches(const JET &jet, const JET &corrJet, NtupleContent &n
 }
 
 template <typename JET, typename MUON>
-inline void FindJetProbePair(const std::vector<JET> &jets, const MUON &mu, NtupleContent &nt) {
+inline void FindJetProbePair(const std::vector<JET> &jets, const MUON &mu, StandAloneNtupleContent &nt) {
   TLorentzVector muonP4;
   muonP4.SetPtEtaPhiM(mu.pt(), mu.eta(), mu.phi(), mu.mass());
   float minDR = 999;
@@ -138,6 +139,7 @@ inline void FindJetProbePair(const std::vector<JET> &jets, const MUON &mu, Ntupl
       closestJetP4 = jetP4;
     }
   }
+
   nt.probe_minDR = minDR;
   nt.probe_ptRel_minDR =
       (muonP4.P() * (closestJetP4.Vect().Cross(muonP4.Vect()).Mag() / closestJetP4.P() / muonP4.P()));
