@@ -246,9 +246,61 @@
 				"dataset": "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixDRPremix-130X_mcRun3_2023_realistic_postBPix_v2-v3/AODSIM",
 				"globalTag": "130X_mcRun3_2023_realistic_postBPix_v2"
 			},
-			"DY_madgraph_RelVal": {
-                "dataset": "/RelValZMM_PU_13p6/CMSSW_13_0_12-PU_130X_mcRun3_2023_realistic_postBPix_v2_RV201-v1/AODSIM",
-                "globalTag": "130X_mcRun3_2023_realistic_postBPix_v2"
+            "Run2023B_M0": {
+                "dataset": "/Muon0/Run2023B-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023B_M1": {
+                "dataset": "/Muon1/Run2023B-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v3/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M0": {
+                "dataset": "/Muon0/Run2023C-PromptReco-v4/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C1_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C2_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C3_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v3/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023C4_M1": {
+                "dataset": "/Muon1/Run2023C-PromptReco-v4/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v3"
+            },
+            "Run2023D_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v4"
+            },
+            "Run2023D_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v1/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v4"
+            },
+            "Run2023D2_M0": {
+                "dataset": "/Muon0/Run2023D-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v4"
+            },
+            "Run2023D2_M1": {
+                "dataset": "/Muon1/Run2023D-PromptReco-v2/AOD",
+                "globalTag": "130X_dataRun3_Prompt_v4"
             }
         }
     }
