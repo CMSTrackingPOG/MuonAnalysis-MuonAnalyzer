@@ -225,11 +225,11 @@ def main():
         elif storageSite == 'CERNBOX':
             # See https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ#Can_I_send_CRAB_output_to_CERNBO
             config.Site.storageSite = 'T3_CH_CERNBOX'
-            config.Data.outLFNDirBase = '/store/user/%s/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
+            config.Data.outLFNDirBase = '/store/user/%s/TestAODminiAOD/TnP_ntuples/%s/%s/%s/%s' % (getUsername(), particle, resonance, era, dataTier)
 
         #config.Site.ignoreGlobalBlacklist = True
         #config.Data.ignoreLocality = True
-        #config.Site.whitelist = ['T2_US_*']
+        config.Site.whitelist = ['T2_CH_CSCS','T2_CH_CERN','T2_IT_Rome','T2_IT_Legnaro','T2_IT_Pisa','T1_UK_RAL_Disk','T2_DE_RWTH','T2_FR_GRIF_IRFU']
         #config.Site.blacklist = ['T2_FI_HIP']
 
         #--------------------------------------------------------
@@ -282,7 +282,8 @@ def main():
             if isData:
                 if 'UL' in era:
                     if '2018' in era:
-                        config.Data.lumiMask = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/Legacy_2018/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt'
+                        # config.Data.lumiMask = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/Legacy_2018/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt'
+                        config.Data.lumiMask = '/afs/cern.ch/user/m/mnickel/private/MUONPDG/CMSSW_10_6_18/src/MuonAnalysis/MuonAnalyzer/Cert_Test_AOD_miniAOD.txt'
                     elif '2017' in era:
                         config.Data.lumiMask = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/Legacy_2017/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt'
                     elif '2016' in era:
