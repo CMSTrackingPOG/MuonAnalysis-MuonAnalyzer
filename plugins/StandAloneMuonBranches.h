@@ -152,6 +152,20 @@ inline void StandAloneFillProbeBranches(
       nt.probe_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
       
     }
+    else {
+      reco::Track match_track = match_tracks.second.at(0); // store the first track
+      nt.probe_isTrkMatch = false;
+      nt.probe_trkPt = -99;
+      nt.probe_trkEta = -99;
+      nt.probe_trkPhi = -99;
+      nt.probe_trkCharge = -99;
+      nt.probe_trkDxy = -99;
+      nt.probe_trkDz = -99;
+      nt.probe_trkHits = -99;
+      nt.probe_trkStripHits = -99;
+      nt.probe_trkPixelHits = -99;
+      nt.probe_trk_SAmu_DeltaR = -99;
+    }
   }
   if (match_tracks.first.size() >= 2) {
     if (match_tracks.first.at(1)) {
@@ -167,6 +181,20 @@ inline void StandAloneFillProbeBranches(
       nt.probeSA_trkStripHits = match_track.hitPattern().numberOfValidStripHits();
       nt.probeSA_trkPixelHits = match_track.hitPattern().numberOfValidPixelHits();
       
+    }
+    else{
+      reco::Track match_track = match_tracks.second.at(1);
+      nt.probeSA_isTrkMatch = false;
+      nt.probeSA_trkPt = -99;
+      nt.probeSA_trkEta = -99;
+      nt.probeSA_trkPhi = -99;
+      nt.probeSA_trkCharge = -99;
+      nt.probeSA_trkDxy = -99;
+      nt.probeSA_trkDz = -99;
+      nt.probeSA_trkHits = -99;
+      nt.probeSA_trkStripHits = -99;
+      nt.probeSA_trkPixelHits = -99;
+      nt.probeSA_trk_SAmu_DeltaR = -99;
     }
   }
   if (match_muon_idx <= -1) {
